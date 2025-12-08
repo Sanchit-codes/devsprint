@@ -5,31 +5,31 @@ export default function Footer() {
   const socialLinks = [
     {
       name: 'Twitter',
-      icon: '𝕏',
+      icon: 'https://img.icons8.com/ios-filled/50/000000/twitter.png',
       url: 'https://twitter.com/gdgmits',
       className: 'twitter'
     },
     {
       name: 'LinkedIn',
-      icon: '💼',
+      icon: 'https://img.icons8.com/ios-filled/50/000000/linkedin.png',
       url: 'https://linkedin.com/company/gdg-mits',
       className: 'linkedin'
     },
     {
       name: 'Instagram',
-      icon: '📷',
+      icon: 'https://img.icons8.com/ios-filled/50/000000/instagram-new.png',
       url: 'https://instagram.com/gdg.mits',
       className: 'instagram'
     },
     {
       name: 'GitHub',
-      icon: '⚡',
+      icon: 'https://img.icons8.com/ios-filled/50/000000/github.png',
       url: 'https://github.com/gdg-mits',
       className: 'github'
     },
     {
       name: 'Discord',
-      icon: '💬',
+      icon: 'https://img.icons8.com/ios-filled/50/000000/discord-logo.png',
       url: 'https://discord.gg/gdgmits',
       className: 'discord'
     }
@@ -43,13 +43,13 @@ export default function Footer() {
             <Image
               src="https://res.cloudinary.com/startup-grind/image/upload/c_fill,dpr_2.0,f_auto,g_center,h_1080,q_100,w_1080/v1/gcs/platform-data-goog/chapter_banners/blob_rKcKdQg"
               alt="GDG MITS Logo"
-              width={1080}
-              height={1080}
+              width={60}
+              height={60}
               className={styles['footer__logo-icon']}
             />
             <div className={styles['footer__logo-text']}>
               <div className={styles.brand}>GDG MITS</div>
-              <div className={styles.event}>DevSprint 2025</div>
+              <div className={styles.event}>DevSprint 2026</div>
             </div>
           </div>
           <div className={styles.footer__copyright}>
@@ -65,10 +65,18 @@ export default function Footer() {
                 href={social.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={styles[social.className]}
+                className={`${styles.footer__socialLink} ${styles[social.className]}`}
                 aria-label={social.name}
               >
-                {social.icon}
+                <div className={styles.socialIconWrapper}>
+                  <Image
+                    src={social.icon}
+                    alt={social.name}
+                    width={20}
+                    height={20}
+                    className={styles.socialIcon}
+                  />
+                </div>
               </a>
             ))}
           </div>

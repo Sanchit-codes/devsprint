@@ -2,18 +2,32 @@
 
 .tracks {
   background-color: $bg-dark-secondary;
-  
+
+  /* ⬇️ Added clean spacing for intro text */
+  &__intro {
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    text-align: center;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+    color: $text-secondary;
+  }
+
   &__grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: $spacing-lg;
-    
+
     @include responsive($breakpoint-tablet) {
       grid-template-columns: 1fr;
       gap: $spacing-md;
     }
   }
-  
+
   &__card {
     background: $bg-dark-card;
     border-radius: 16px;
@@ -22,7 +36,7 @@
     overflow: hidden;
     transition: all 0.4s ease;
     border-top: 6px solid;
-    
+
     &::before {
       content: '';
       position: absolute;
@@ -34,75 +48,75 @@
       opacity: 0;
       transition: opacity 0.4s ease;
     }
-    
+
     &:hover {
       transform: translateY(-10px);
       box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      
+
       &::before {
         opacity: 0.05;
       }
-      
+
       .tracks__card-icon {
         transform: scale(1.1) rotate(5deg);
       }
     }
-    
+
     &.web {
       border-top-color: $google-blue;
       color: $google-blue;
     }
-    
+
     &.android {
       border-top-color: $google-green;
       color: $google-green;
     }
-    
+
     &.ai {
       border-top-color: $google-red;
       color: $google-red;
     }
-    
+
     &.blockchain {
       border-top-color: $google-yellow;
       color: $google-yellow;
     }
-    
+
     &-header {
       display: flex;
       align-items: center;
       gap: $spacing-md;
       margin-bottom: $spacing-md;
     }
-    
+
     &-icon {
       font-size: 2.4rem;
       transition: transform 0.4s ease;
     }
-    
+
     &-title {
       font-size: 1.4rem;
       font-weight: 700;
       color: $text-primary;
-      
+
       @include responsive($breakpoint-mobile) {
         font-size: 1.2rem;
       }
     }
-    
+
     &-description {
       font-size: 0.8rem;
       line-height: 1.8;
       color: $text-secondary;
       margin-bottom: $spacing-sm;
     }
-    
+
     &-tech {
       display: flex;
       flex-wrap: wrap;
       gap: 0.5rem;
       margin-top: $spacing-md;
-      
+
       span {
         background: rgba(0, 0, 0, 0.03);
         color: currentColor;

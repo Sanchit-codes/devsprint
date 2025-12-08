@@ -2,11 +2,16 @@ import styles from './Rules.module.scss'
 
 export default function Rules() {
   const rules = [
-    'All code must be written during the event.',
-    'Teams can have a maximum of 4 members.',
-    'Projects must be submitted via the designated platform before the deadline.',
-    'Adhere to the Code of Conduct. Be respectful and inclusive.',
-    'Third-party APIs and libraries are allowed, but the core work must be original.'
+    'Participants must submit a project presentation deck.',
+    'A working MVP (Minimum Viable Product) link must be included.',
+    'A maximum three-minute demo video is required.',
+    'A GitHub repository link must be provided for code review.',
+    'Projects must use at least one Google technology (mandatory).',
+    'List all Google AI tools or additional Google services used in the solution.',
+    'A short written solution description (around 100 words) must be included.',
+    'Projects must be created after 1st December, 2025 to remain eligible.',
+    'Participants must upload submissions using the provided template.',
+    'All submission materials (code, documentation, demo, slides) must be in English.'
   ]
 
   const faqs = [
@@ -23,7 +28,7 @@ export default function Rules() {
           <div className="heading-back">FAQs & RULES</div>
           <h2 className="heading-front">FAQs and Rules</h2>
         </div>
-        
+
         <div className={styles.rules__wrapper}>
           {/* Rules Section */}
           <div className={styles.rules__content}>
@@ -31,7 +36,7 @@ export default function Rules() {
               <h3>Rules & Guidelines</h3>
               <p>To ensure a fair and enjoyable experience for everyone, please adhere to the following rules.</p>
             </div>
-            
+
             <div className={styles.rules__code}>
               <div className={styles.rules__window}>
                 <div className={styles.rules__header}>
@@ -64,7 +69,7 @@ export default function Rules() {
               <div className={styles.faq__heading}>
                 <h3>Frequently Asked <br></br>Questions</h3>
               </div>
-              
+
               <div className={styles.faq__list}>
                 {faqs.map((faq, index) => (
                   <div key={index} className={styles.faq__item}>

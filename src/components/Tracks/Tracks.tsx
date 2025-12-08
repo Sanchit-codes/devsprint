@@ -39,11 +39,18 @@ export default function Tracks() {
   return (
     <section className={`section ${styles['tracks']}`}>
       <div className="container">
+
         <div className="dual-heading">
           <div className="heading-back">TRACKS</div>
-          <h2 className="heading-front">Choose Your Track</h2>
+          <h2 className="heading-front">Open Innovation</h2>
         </div>
-        
+
+        {/* Intro Line */}
+        <p className={styles.tracks__intro}>
+          Participants can build solutions for real-world problems using Google technologies,
+          focusing on social challenges and pressing issues around them.
+        </p>
+
         <div className={styles.tracks__grid}>
           {tracks.map((track, index) => (
             <div 
@@ -58,12 +65,10 @@ export default function Tracks() {
                   {track.title}
                 </h3>
               </div>
-              <p className={styles['tracks__card-description']}>
-                {track.description}
-              </p>
-              <p className={styles['tracks__card-description']}>
-                {track.supportText}
-              </p>
+
+              <p className={styles['tracks__card-description']}>{track.description}</p>
+              <p className={styles['tracks__card-description']}>{track.supportText}</p>
+
               <div className={styles['tracks__card-tech']}>
                 {track.technologies.map((tech, techIndex) => (
                   <span key={techIndex}>{tech}</span>
@@ -72,6 +77,7 @@ export default function Tracks() {
             </div>
           ))}
         </div>
+
       </div>
     </section>
   )

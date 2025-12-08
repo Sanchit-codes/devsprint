@@ -1,15 +1,20 @@
-import styles from './AboutGDG.module.scss'
+import styles from './AboutGDG.module.scss';
+import Image from 'next/image';
+import aboutGdgImg from '/public/assets/images/community.png'; // ensure the file is in public/assets/images/
 
 export default function AboutGDG() {
   return (
     <section className={`section ${styles['about-gdg']}`}>
       <div className="container">
+        {/* Heading */}
         <div className="dual-heading">
           <div className="heading-back">ABOUT GDG</div>
           <h2 className="heading-front">Google Developer Groups MITS</h2>
         </div>
-        
+
+        {/* Content */}
         <div className={styles['about-gdg__content']}>
+          {/* Text */}
           <div className={styles['about-gdg__text']}>
             <h3>Community-Driven Innovation</h3>
             <p>
@@ -27,29 +32,17 @@ export default function AboutGDG() {
               who are shaping the future of technology, one project at a time.
             </p>
           </div>
-          
+
+          {/* Illustration */}
           <div className={styles['about-gdg__illustration']}>
-            <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-              <defs>
-                <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" style={{ stopColor: '#EA4335', stopOpacity: 1 }} />
-                  <stop offset="50%" style={{ stopColor: '#FBBC04', stopOpacity: 1 }} />
-                  <stop offset="100%" style={{ stopColor: '#34A853', stopOpacity: 1 }} />
-                </linearGradient>
-              </defs>
-              <circle cx="250" cy="250" r="200" fill="url(#grad2)" opacity="0.1"/>
-              <circle cx="200" cy="200" r="50" fill="#4285F4"/>
-              <circle cx="300" cy="200" r="50" fill="#EA4335"/>
-              <circle cx="200" cy="300" r="50" fill="#FBBC04"/>
-              <circle cx="300" cy="300" r="50" fill="#34A853"/>
-              <line x1="200" y1="200" x2="300" y2="200" stroke="#fff" strokeWidth="4"/>
-              <line x1="200" y1="200" x2="200" y2="300" stroke="#fff" strokeWidth="4"/>
-              <line x1="300" y1="200" x2="300" y2="300" stroke="#fff" strokeWidth="4"/>
-              <line x1="200" y1="300" x2="300" y2="300" stroke="#fff" strokeWidth="4"/>
-            </svg>
+            <Image
+              src={aboutGdgImg}
+              alt="About GDG Illustration"
+              priority
+            />
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
