@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import styles from './OtherEvents.module.scss'
 
 export default function OtherEvents() {
@@ -107,7 +108,7 @@ export default function OtherEvents() {
           {events.map((event, index) => (
             <div key={index} className={styles['other-events__card']}>
               <div className={styles['other-events__card-image']}>
-                <img src={event.image} alt={event.title} />
+                <Image src={event.image} alt={event.title} width={800} height={400} />
               </div>
               <div className={styles['other-events__card-content']}>
                 <h3 className={styles['other-events__card-title']}>
@@ -146,14 +147,16 @@ export default function OtherEvents() {
               {/* Left Side - Image and Speaker */}
               <div className={styles['modal__left']}>
                 <div className={styles['modal__image']}>
-                  <img src={events[selectedEvent].image} alt={events[selectedEvent].title} />
+                  <Image src={events[selectedEvent].image} alt={events[selectedEvent].title} width={800} height={400} />
                 </div>
                 
                 <div className={styles['modal__speaker-card']}>
                   <div className={styles['modal__speaker-image']}>
-                    <img 
+                    <Image 
                       src={events[selectedEvent].speaker.image} 
-                      alt={events[selectedEvent].speaker.name} 
+                      alt={events[selectedEvent].speaker.name}
+                      width={400}
+                      height={400}
                     />
                   </div>
                   <div className={styles['modal__speaker-info']}>
