@@ -38,7 +38,7 @@ export default function About() {
             </p>
 
             <p>
-              Whether you're a beginner or an experienced builder, DevSprint is your launchpad to
+              Whether you&apos;re a beginner or an experienced builder, DevSprint is your launchpad to
               learn, innovate, and grow. Join us to build something meaningful, connect with
               like-minded tech enthusiasts, and transform your ideas into reality.
             </p>
