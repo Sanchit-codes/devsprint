@@ -33,7 +33,20 @@ const seminars = [
 
 const formSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters."),
-  email: z.string().email("Please enter a valid email address."),
+  email: z.string()
+    .email("Please enter a valid email address.")
+    .refine(
+      (email) => {
+        const commonProviders = ['gmail.com', 'yahoo.com', 'outlook.com', 'hotmail.com', 'live.com', 'icloud.com', 'protonmail.com', 'aol.com'];
+        const domain = email.split('@')[1]?.toLowerCase();
+        return !commonProviders.includes(domain);
+      },
+      "Please use your institutional email address (not Gmail, Yahoo, Outlook, etc.)"
+    ),
+  mobile: z.string()
+    .min(10, "Mobile number must be at least 10 digits.")
+    .max(15, "Mobile number must not exceed 15 digits.")
+    .regex(/^[0-9+\-\s()]*$/, "Please enter a valid mobile number."),
   enrollment: z.string().min(5, "Enrollment number is required."),
   branch: z.string().min(2, "Branch is required."),
   year: z.enum(['1st', '2nd', '3rd', '4th']),
@@ -55,6 +68,7 @@ export default function RegisterPage() {
     defaultValues: {
       name: "",
       email: "",
+      mobile: "",
       enrollment: "",
       branch: "",
       year: "2nd",
@@ -75,6 +89,7 @@ export default function RegisterPage() {
     const formData = new FormData();
     formData.append('name', values.name);
     formData.append('email', values.email);
+    formData.append('mobile', values.mobile);
     formData.append('enrollment', values.enrollment);
     formData.append('branch', values.branch);
     formData.append('year', values.year);
@@ -160,7 +175,7 @@ export default function RegisterPage() {
                         </label>
                         <input
                           type="email"
-                          placeholder="your.email@example.com"
+                          placeholder="your.email@college.edu"
                           className={`${styles.input} ${form.formState.errors.email ? styles.inputError : ''}`}
                           {...form.register("email")}
                         />
@@ -168,6 +183,25 @@ export default function RegisterPage() {
                           <span className={styles.error}>
                            
                             {form.formState.errors.email.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Mobile Number
+                        </label>
+                        <input
+                          type="tel"
+                          placeholder="+91 98765 43210"
+                          className={`${styles.input} ${form.formState.errors.mobile ? styles.inputError : ''}`}
+                          {...form.register("mobile")}
+                        />
+                        {form.formState.errors.mobile && (
+                          <span className={styles.error}>
+                           
+                            {form.formState.errors.mobile.message}
                           </span>
                         )}
                       </div>
