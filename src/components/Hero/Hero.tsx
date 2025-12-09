@@ -76,8 +76,7 @@ export default function Hero() {
         <div className={styles.gradient3}></div>
         <div className={styles.gradient4}></div>
 
-        {/* Scan line */}
-        <div className={styles.scanLine}></div>
+        
       </div>
 
       {/* Grid overlay */}
@@ -123,11 +122,11 @@ export default function Hero() {
             </a>
 
             <a 
-              href="#schedule" 
+              href="/register" 
               className={`${styles.btn} ${styles.btnSecondary}`}
             >
               <span className={`${styles.btnIcon} material-symbols-outlined`}>event</span>
-              <span className={styles.btnText}>Event Schedule</span>
+              <span className={styles.btnText}>Event Registration</span>
             </a>
 
             <a 

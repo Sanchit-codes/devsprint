@@ -3,36 +3,52 @@ import styles from './Tracks.module.scss'
 export default function Tracks() {
   const tracks = [
     {
-      title: 'Web Development',
-      icon: '🌐',
-      description: 'Build innovative web applications using modern frameworks and technologies.',
-      supportText: 'Create responsive, scalable, and user-friendly web solutions.',
-      technologies: ['React', 'Next.js', 'Vue', 'Node.js'],
-      className: 'web'
+      title: 'Flutter',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg',
+      description: 'Build beautiful cross-platform apps',
+      className: 'flutter'
     },
     {
-      title: 'Android Development',
-      icon: '📱',
-      description: 'Develop native Android applications that solve real-world problems.',
-      supportText: 'Build mobile apps with amazing UX and performance.',
-      technologies: ['Kotlin', 'Java', 'Jetpack Compose', 'Firebase'],
+      title: 'Gemini AI',
+      icon: 'https://fonts.gstatic.com/s/i/productlogos/googleg_gm/v6/192px.svg',
+      description: 'Advanced multimodal AI models',
+      className: 'gemini'
+    },
+    {
+      title: 'TensorFlow',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg',
+      description: 'End-to-end ML platform',
+      className: 'tensorflow'
+    },
+    {
+      title: 'Google Cloud',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+      description: 'Scalable cloud infrastructure',
+      className: 'cloud'
+    },
+    {
+      title: 'Firebase',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+      description: 'Build apps fast, scale with ease',
+      className: 'firebase'
+    },
+    {
+      title: 'Android',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/android/android-original.svg',
+      description: 'Modern mobile development',
       className: 'android'
     },
     {
-      title: 'AI/ML',
-      icon: '🤖',
-      description: 'Create intelligent solutions using machine learning and artificial intelligence.',
-      supportText: 'Leverage AI to build predictive and smart applications.',
-      technologies: ['TensorFlow', 'PyTorch', 'Scikit-learn', 'OpenAI'],
-      className: 'ai'
+      title: 'Angular',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angularjs/angularjs-original.svg',
+      description: 'Web developer platform',
+      className: 'angular'
     },
     {
-      title: 'Blockchain',
-      icon: '⛓️',
-      description: 'Build decentralized applications using blockchain technology.',
-      supportText: 'Develop secure and transparent blockchain solutions.',
-      technologies: ['Solidity', 'Ethereum', 'Web3.js', 'Smart Contracts'],
-      className: 'blockchain'
+      title: 'Kotlin',
+      icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kotlin/kotlin-original.svg',
+      description: 'Modern programming language',
+      className: 'kotlin'
     }
   ]
 
@@ -47,8 +63,7 @@ export default function Tracks() {
 
         {/* Intro Line */}
         <p className={styles.tracks__intro}>
-          Participants can build solutions for real-world problems using Google technologies,
-          focusing on social challenges and pressing issues around them.
+          Build ANY unique solution using Google technologies. No boundaries, just pure innovation.
         </p>
 
         <div className={styles.tracks__grid}>
@@ -56,26 +71,28 @@ export default function Tracks() {
             <div 
               key={index} 
               className={`${styles.tracks__card} ${styles[track.className]}`}
+              data-title={track.title}
             >
-              <div className={styles['tracks__card-header']}>
-                <div className={styles['tracks__card-icon']}>
-                  {track.icon}
-                </div>
+              <div className={styles['tracks__card-icon']}>
+                <img src={track.icon} alt={track.title} />
+              </div>
+              <div className={styles['tracks__card-content']}>
                 <h3 className={styles['tracks__card-title']}>
                   {track.title}
                 </h3>
+                <p className={styles['tracks__card-description']}>{track.description}</p>
               </div>
-
-              <p className={styles['tracks__card-description']}>{track.description}</p>
-              <p className={styles['tracks__card-description']}>{track.supportText}</p>
-
-              <div className={styles['tracks__card-tech']}>
-                {track.technologies.map((tech, techIndex) => (
-                  <span key={techIndex}>{tech}</span>
-                ))}
+              <div className={styles['tracks__card-hover']}>
+                <span>Build with {track.title}</span>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className={styles.tracks__footer}>
+          <p className={styles.tracks__footerText}>
+            <strong>Your imagination is the limit.</strong> Combine these technologies to create something amazing!
+          </p>
         </div>
 
       </div>

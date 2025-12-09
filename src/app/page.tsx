@@ -8,6 +8,7 @@ import PrizePool from '@/components/PrizePool/PrizePool'
 import Rules from '@/components/Rules/Rules'
 import Tracks from '@/components/Tracks/Tracks'
 import Footer from '@/components/Footer/Footer'
+import TeamMembers from '@/components/Team/Team'
 
 export default function Home() {
   return (
@@ -21,6 +22,7 @@ export default function Home() {
       <PrizePool />
       <Tracks />
       <Rules />
+      <TeamMembers />
       <Footer />
     </main>
   )

@@ -383,7 +383,7 @@ export default function OtherEvents() {
       <div className="container">
         <div className="dual-heading">
           <div className="heading-back">OTHER EVENTS</div>
-          <h2 className="heading-front">Explore More Events</h2>
+          <h2 className="heading-front">Events</h2>
         </div>
         
         <div className={styles['other-events__grid']}>

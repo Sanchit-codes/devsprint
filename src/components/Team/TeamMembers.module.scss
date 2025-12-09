@@ -1,0 +1,371 @@
+@import '../../styles/variables.scss';
+
+.team-members {
+  background-color: $bg-dark-secondary;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    padding: 60px 0;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 40px 0;
+  }
+}
+
+.team-intro {
+  text-align: center;
+  color: $text-secondary;
+  font-size: 1.1rem;
+  max-width: 800px;
+  margin: 0 auto 40px;
+  line-height: 1.6;
+  
+  @media (max-width: 768px) {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    padding: 0 20px;
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+  }
+}
+
+.scroll-container-wrapper {
+  position: relative;
+  margin: 0 -40px;
+  padding: 0 40px;
+  
+  @media (max-width: 768px) {
+    margin: 0 -20px;
+    padding: 0 20px;
+  }
+}
+
+.gradient-overlay-left,
+.gradient-overlay-right {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gradient-overlay-left {
+  left: 0;
+  background: linear-gradient(90deg, $bg-dark-secondary 0%, transparent 100%);
+}
+
+.gradient-overlay-right {
+  right: 0;
+  background: linear-gradient(90deg, transparent 0%, $bg-dark-secondary 100%);
+}
+
+.team-scroll-container {
+  position: relative;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 30px 0 40px;
+  margin-bottom: 20px;
+  scroll-behavior: smooth;
+  cursor: grab;
+  
+  &:active {
+    cursor: grabbing;
+  }
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  
+  @media (max-width: 768px) {
+    padding: 20px 0 30px;
+  }
+}
+
+.team-grid {
+  display: inline-flex;
+  gap: 30px;
+  
+  @media (max-width: 768px) {
+    gap: 20px;
+  }
+  
+  @media (max-width: 480px) {
+    gap: 15px;
+  }
+}
+
+.team-card {
+  flex: 0 0 320px;
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 2px solid #e6e6e6;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  
+  &:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border-color: #d1d1d1;
+  }
+  
+  @media (max-width: 768px) {
+    flex: 0 0 280px;
+    
+    &:hover {
+      transform: translateY(-8px);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    flex: 0 0 240px;
+    
+    &:hover {
+      transform: translateY(-5px);
+    }
+  }
+  
+  &__image {
+    width: 100%;
+    height: 220px;
+    position: relative;
+    overflow: hidden;
+    
+    @media (max-width: 768px) {
+      height: 180px;
+    }
+    
+    @media (max-width: 480px) {
+      height: 150px;
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+    
+    .team-card:hover & img {
+      transform: scale(1.05);
+    }
+  }
+  
+  &__image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      to top,
+      rgba(0, 0, 0, 0.8) 0%,
+      transparent 50%
+    );
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+  }
+  
+  &__role-badge {
+    background: white;
+    color: #333;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  &__content {
+    padding: 25px;
+    background: white;
+    
+    @media (max-width: 768px) {
+      padding: 20px;
+    }
+    
+    @media (max-width: 480px) {
+      padding: 15px;
+    }
+  }
+  
+  &__name {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+    line-height: 1.3;
+    
+    @media (max-width: 768px) {
+      font-size: 1.2rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.1rem;
+    }
+  }
+  
+  &__department {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 500;
+    
+    @media (max-width: 480px) {
+      font-size: 0.85rem;
+      margin-bottom: 10px;
+    }
+  }
+  
+  &__bio {
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    
+    @media (max-width: 768px) {
+      font-size: 0.85rem;
+      margin-bottom: 15px;
+      -webkit-line-clamp: 2;
+    }
+  }
+  
+  &__expertise {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+    
+    @media (max-width: 480px) {
+      margin-bottom: 15px;
+      gap: 6px;
+    }
+  }
+  
+  &__skill {
+    background: #f5f5f5;
+    color: #333;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border: 1px solid #e0e0e0;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: #e8e8e8;
+      transform: translateY(-1px);
+    }
+  }
+  
+  &__social {
+    display: flex;
+    gap: 12px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+    
+    @media (max-width: 480px) {
+      gap: 10px;
+    }
+  }
+  
+  &__social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    color: #666;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      background: #333;
+      color: white;
+      transform: translateY(-3px) scale(1.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+    
+    @media (max-width: 480px) {
+      width: 32px;
+      height: 32px;
+      
+      svg {
+        width: 16px;
+        height: 16px;
+      }
+    }
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .gradient-overlay-left,
+  .gradient-overlay-right {
+    width: 50px;
+  }
+}
+
+@media (max-width: 480px) {
+  .gradient-overlay-left,
+  .gradient-overlay-right {
+    width: 30px;
+  }
+}
+
+// Remove the old animation keyframes
+@keyframes scrollHorizontal {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-320px * 8 - 30px * 7));
+  }
+}
+
+// Update the component to remove animation and add drag functionality
+// Add this to your component file (TeamMembers.tsx)
+
+// Remove the useEffect animation code and replace with this simpler version:
+
+// Add this CSS for better touch scrolling
+@media (hover: none) and (pointer: coarse) {
+  .team-scroll-container {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: scroll;
+    cursor: default;
+  }
+  
+  .team-grid {
+    min-width: min-content;
+  }
+}

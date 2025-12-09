@@ -2,40 +2,51 @@
 
 .tracks {
   background-color: $bg-dark-secondary;
+  position: relative;
+  overflow: hidden;
 
-  /* ⬇️ Added clean spacing for intro text */
   &__intro {
     margin-top: 1rem;
-    margin-bottom: 2.5rem;
-    font-size: 1.05rem;
+    margin-bottom: 3rem;
+    font-size: 1.1rem;
     line-height: 1.6;
     text-align: center;
-    max-width: 800px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    opacity: 0.9;
     color: $text-secondary;
+    opacity: 0.9;
   }
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: $spacing-lg;
+    grid-template-columns: repeat(4, 1fr);
+    gap: $spacing-md;
+    margin-bottom: 3rem;
 
     @include responsive($breakpoint-tablet) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @include responsive($breakpoint-mobile) {
       grid-template-columns: 1fr;
-      gap: $spacing-md;
     }
   }
 
   &__card {
-    background: $bg-dark-card;
+    background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.05));
     border-radius: 16px;
     padding: $spacing-lg;
     position: relative;
     overflow: hidden;
-    transition: all 0.4s ease;
-    border-top: 6px solid;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 180px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    cursor: pointer;
 
     &::before {
       content: '';
@@ -44,87 +55,170 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: radial-gradient(circle at top, currentColor, transparent);
-      opacity: 0;
-      transition: opacity 0.4s ease;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.03) 50%, transparent 70%);
+      transform: translateX(-100%);
+      transition: transform 0.6s ease;
     }
 
     &:hover {
-      transform: translateY(-10px);
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      border-color: currentColor;
+      
       &::before {
-        opacity: 0.05;
+        transform: translateX(100%);
       }
 
       .tracks__card-icon {
-        transform: scale(1.1) rotate(5deg);
+        transform: translateY(-5px) scale(1.1);
       }
-    }
 
-    &.web {
-      border-top-color: $google-blue;
-      color: $google-blue;
-    }
-
-    &.android {
-      border-top-color: $google-green;
-      color: $google-green;
-    }
-
-    &.ai {
-      border-top-color: $google-red;
-      color: $google-red;
-    }
-
-    &.blockchain {
-      border-top-color: $google-yellow;
-      color: $google-yellow;
-    }
-
-    &-header {
-      display: flex;
-      align-items: center;
-      gap: $spacing-md;
-      margin-bottom: $spacing-md;
+      .tracks__card-hover {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     &-icon {
-      font-size: 2.4rem;
-      transition: transform 0.4s ease;
-    }
+      width: 60px;
+      height: 60px;
+      margin-bottom: $spacing-md;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      padding: 10px;
+      background: rgba(255, 255, 255, 0.03);
 
-    &-title {
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: $text-primary;
-
-      @include responsive($breakpoint-mobile) {
-        font-size: 1.2rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        filter: brightness(0) saturate(100%) invert(100%);
+        transition: all 0.3s ease;
       }
     }
 
-    &-description {
-      font-size: 0.8rem;
-      line-height: 1.8;
-      color: $text-secondary;
-      margin-bottom: $spacing-sm;
+    &-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
-    &-tech {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-      margin-top: $spacing-md;
+    &-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: $text-primary;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+    }
 
-      span {
-        background: rgba(0, 0, 0, 0.03);
-        color: currentColor;
-        padding: 0.4rem 0.8rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        border: 1px solid currentColor;
+    &-description {
+      font-size: 0.85rem;
+      line-height: 1.4;
+      color: $text-secondary;
+      opacity: 0.8;
+    }
+
+    &-hover {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: currentColor;
+      color: white;
+      padding: 0.8rem;
+      font-size: 0.8rem;
+      font-weight: 600;
+      opacity: 0;
+      transform: translateY(100%);
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+  }
+
+  /* Card-specific styles with Google colors */
+  .flutter {
+    color: #02569B;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(23%) sepia(98%) saturate(1214%) hue-rotate(182deg) brightness(90%) contrast(101%);
+    }
+  }
+
+  .gemini {
+    color: #4285F4;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(35%) sepia(85%) saturate(1689%) hue-rotate(202deg) brightness(98%) contrast(94%);
+    }
+  }
+
+  .tensorflow {
+    color: #FF6F00;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(42%) sepia(95%) saturate(1344%) hue-rotate(359deg) brightness(101%) contrast(106%);
+    }
+  }
+
+  .cloud {
+    color: #EA4335;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(32%) sepia(99%) saturate(2425%) hue-rotate(349deg) brightness(97%) contrast(88%);
+    }
+  }
+
+  .firebase {
+    color: #FFCA28;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(81%) sepia(98%) saturate(749%) hue-rotate(322deg) brightness(104%) contrast(101%);
+    }
+  }
+
+  .android {
+    color: #3DDC84;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(68%) sepia(63%) saturate(418%) hue-rotate(92deg) brightness(96%) contrast(86%);
+    }
+  }
+
+  .angular {
+    color: #DD0031;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(18%) sepia(99%) saturate(7454%) hue-rotate(349deg) brightness(86%) contrast(94%);
+    }
+  }
+
+  .kotlin {
+    color: #7F52FF;
+    
+    &:hover .tracks__card-icon img {
+      filter: brightness(0) saturate(100%) invert(30%) sepia(88%) saturate(2594%) hue-rotate(241deg) brightness(102%) contrast(101%);
+    }
+  }
+
+  &__footer {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    &Text {
+      font-size: 1rem;
+      color: $text-secondary;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.6;
+
+      strong {
+        color: $text-primary;
+        font-weight: 700;
       }
     }
   }

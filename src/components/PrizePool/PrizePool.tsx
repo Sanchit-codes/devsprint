@@ -11,7 +11,7 @@ export default function PrizePool() {
     },
     {
       rank: 'Top 10',
-      icon: '🥇', // cleaner top 10 emblem
+      icon: '✨', // cleaner top 10 emblem
       perks: 'Swags + Certificates',
       className: 'second'
     },
