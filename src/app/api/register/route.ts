@@ -1,4 +1,3 @@
-
 import { NextRequest, NextResponse } from 'next/server';
 import { google } from 'googleapis';
 
@@ -60,21 +59,68 @@ export async function POST(req: NextRequest) {
     console.log('[/api/register] - Checking for existing registration...');
     const existingData = await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'A:B', // Get name and email columns
+      range: 'A:H', // Get all columns
     });
 
     const rows = existingData.data.values || [];
-    const emailExists = rows.some((row, index) => {
+    let existingRowIndex = -1;
+    let existingSeminars: string[] = [];
+    
+    rows.forEach((row, index) => {
       // Skip header row (index 0)
-      if (index === 0) return false;
-      return row[1]?.toLowerCase() === email.toLowerCase();
+      if (index === 0) return;
+      if (row[1]?.toLowerCase() === email.toLowerCase()) {
+        existingRowIndex = index + 1; // +1 because sheet rows are 1-indexed
+        existingSeminars = row[6] ? JSON.parse(row[6]) : [];
+      }
     });
 
-    if (emailExists) {
+    if (existingRowIndex > 0) {
       console.log('[/api/register] - Email already registered:', email);
+      
+      // Parse new seminars
+      const newSeminars: string[] = JSON.parse(seminars);
+      
+      // Find seminars to add (present in new but not in existing)
+      const seminarsToAdd = newSeminars.filter(s => !existingSeminars.includes(s));
+      
+      if (seminarsToAdd.length === 0) {
+        console.log('[/api/register] - User already registered for all selected seminars');
+        return NextResponse.json({ 
+          error: 'You are already registered for all selected seminars.' 
+        }, { status: 409 });
+      }
+      
+      // Merge seminars (existing + new ones)
+      const mergedSeminars = Array.from(new Set([...existingSeminars, ...newSeminars]));
+      
+      console.log('[/api/register] - Updating registration with new seminars:', seminarsToAdd);
+      
+      // Update the existing row
+      await sheets.spreadsheets.values.update({
+        spreadsheetId: process.env.GOOGLE_SHEET_ID,
+        range: `G${existingRowIndex}:H${existingRowIndex}`, // Update seminars and timestamp
+        valueInputOption: 'USER_ENTERED',
+        requestBody: {
+          values: [[JSON.stringify(mergedSeminars), new Date().toISOString()]],
+        },
+      });
+      
+      // Get seminar names for the response
+      const seminarMap: { [key: string]: string } = {
+        'ai-future': 'AI & Future of Technology',
+        'web3-blockchain': 'Web3 & Blockchain Revolution',
+        'cloud-devops': 'Cloud Computing & DevOps',
+      };
+      const addedSeminarNames = seminarsToAdd.map(s => seminarMap[s] || s);
+      
+      console.log('[/api/register] - Registration updated successfully');
       return NextResponse.json({ 
-        error: 'You have already registered with this email address.' 
-      }, { status: 409 });
+        success: true, 
+        updated: true,
+        addedSeminars: addedSeminarNames,
+        message: `Registration updated! You have been added to: ${addedSeminarNames.join(', ')}`
+      });
     }
 
     const values = [

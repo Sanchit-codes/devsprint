@@ -31,7 +31,7 @@ export default function About() {
             <h3>Unleash Your Innovation</h3>
             <p>
               DevSprint is an annual hackathon hosted by Google Developer Groups (GDG) on Campus,
-              MITS Gwalior. It brings together developers, innovators, and problem-solvers from
+              MITS-DU, Gwalior. It brings together developers, innovators, and problem-solvers from
               diverse backgrounds to collaborate, build impactful solutions, and apply their skills
               to real-world challenges across domains like Web Development, Android, AI/ML,
               Cybersecurity, and IoT.

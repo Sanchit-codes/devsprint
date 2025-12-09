@@ -10,6 +10,19 @@ export default function TeamMembers() {
   const animationRef = useRef<number>(0)
   const scrollSpeed = 0.5
 
+  const facultyMembers = [
+    {
+      id: 1,
+      name: 'DR. R.S. JADON',
+      role1: 'Dean, Students Administration',
+      role2: 'Faculty Coordinator',
+      quote: "A hackathon isn't about the prize. It's about what you discover you can build—and who you become while building it.",
+      image: 'https://web.mitsgwalior.in/images/faculties/CSE/Rs-Jadon.webp', // You'll need to add this image
+      affiliation: 'GDG on Campus - MITS DU'
+    }
+    // Add more faculty members here if needed
+  ]
+
   const teamMembers = [
     {
       id: 1,
@@ -137,114 +150,58 @@ export default function TeamMembers() {
   }
 
   return (
-    <section id="team" className={`section ${styles['team-members']}`}>
-      <div className="container">
-        <div className="dual-heading">
-          <div className="heading-back">OUR TEAM</div>
-          <h2 className="heading-front">Meet Our Team</h2>
-        </div>
+    <>
+      {/* Faculty Section */}
+      <section id="faculty" className={`section ${styles['faculty-section']}`}>
+        <div className="container">
+          <div className="dual-heading">
+            <div className="heading-back">WORDS OF WISDOM</div>
+            <h2 className="heading-front">From Our Leadership</h2>
+          </div>
 
-        <p className={styles['team-intro']}>
-          Our diverse team of experts brings together years of experience and passion for technology.
-        </p>
-
-        <div className={styles['scroll-container-wrapper']}>
-          <div className={styles['gradient-overlay-left']}></div>
-          <div className={styles['gradient-overlay-right']}></div>
-          
-          <div 
-            ref={scrollContainerRef}
-            className={styles['team-scroll-container']}
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            onTouchStart={handleMouseEnter}
-            onTouchEnd={handleMouseLeave}
-          >
-            <div className={styles['team-grid']}>
-              {duplicatedTeamMembers.map((member, index) => (
-                <div 
-                  key={`${member.id}-${index}`} 
-                  className={styles['team-card']}
-                >
-                  <div className={styles['team-card__image']}>
-                    <Image 
-                      src={member.image} 
-                      alt={member.name} 
-                      width={200} 
-                      height={200}
-                      sizes="(max-width: 768px) 150px, 200px"
-                      style={{ 
-                        width: '100%',
-                        height: 'auto',
-                        objectFit: 'cover'
-                      }}
-                    />
-                    <div className={styles['team-card__image-overlay']}>
-                      <span className={styles['team-card__role']}>
-                        {member.role}
-                      </span>
-                    </div>
+          <div className={styles['faculty-container']}>
+            {facultyMembers.map((faculty) => (
+              <div key={faculty.id} className={styles['faculty-card']}>
+                <div className={styles['faculty-content']}>
+                  <div className={styles['faculty-quote']}>
+                    <svg 
+                      className={styles['quote-icon']} 
+                      viewBox="0 0 24 24" 
+                      fill="none" 
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path d="M10 8H8C7.46957 8 6.96086 8.21071 6.58579 8.58579C6.21071 8.96086 6 9.46957 6 10V14C6 14.5304 6.21071 15.0391 6.58579 15.4142C6.96086 15.7893 7.46957 16 8 16H10C10.5304 16 11.0391 15.7893 11.4142 15.4142C11.7893 15.0391 12 14.5304 12 14V10C12 9.46957 11.7893 8.96086 11.4142 8.58579C11.0391 8.21071 10.5304 8 10 8Z" fill="currentColor"/>
+                      <path d="M20 8H18C17.4696 8 16.9609 8.21071 16.5858 8.58579C16.2107 8.96086 16 9.46957 16 10V14C16 14.5304 16.2107 15.0391 16.5858 15.4142C16.9609 15.7893 17.4696 16 18 16H20C20.5304 16 21.0391 15.7893 21.4142 15.4142C21.7893 15.0391 22 14.5304 22 14V10C22 9.46957 21.7893 8.96086 21.4142 8.58579C21.0391 8.21071 20.5304 8 20 8Z" fill="currentColor"/>
+                    </svg>
+                    <p className={styles['faculty-quote-text']}>{faculty.quote}</p>
                   </div>
-                  
-                  <div className={styles['team-card__content']}>
-                    <h3 className={styles['team-card__name']}>
-                      {member.name}
-                    </h3>
-                    
-                    <p className={styles['team-card__description']}>
-                      {member.description}
-                    </p>
-                    
-                    <div className={styles['team-card__social']}>
-                      {member.social.linkedin && (
-                        <a 
-                          href={member.social.linkedin}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles['team-card__social-link']}
-                          aria-label={`${member.name}'s LinkedIn`}
-                        >
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M6 9H2V21H6V9Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M4 6C5.10457 6 6 5.10457 6 4C6 2.89543 5.10457 2 4 2C2.89543 2 2 2.89543 2 4C2 5.10457 2.89543 6 4 6Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </a>
-                      )}
-                      {member.social.github && (
-                        <a 
-                          href={member.social.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className={styles['team-card__social-link']}
-                          aria-label={`${member.name}'s GitHub`}
-                        >
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M16 22V18C16.1392 16.7473 15.78 15.4901 15 14.5C18 14.5 21 12.5 21 9C21.08 7.75 20.73 6.52 20 5.5C20.28 4.35 20.28 3.15 20 2C20 2 19 2 17 3.5C14.36 3 11.64 3 9.00004 3.5C7.00004 2 6.00004 2 6.00004 2C5.70004 3.15 5.70004 4.35 6.00004 5.5C5.27191 6.51588 5.91851 7.75279 5.00004 9C5.00004 12.5 8.00004 14.5 11 14.5C10.61 14.99 10.32 15.55 10.15 16.15C9.98004 16.75 9.93004 17.38 10.00004 18V22" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M10 19C5 20.5 5 16.5 2 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </a>
-                      )}
-                      {member.social.email && (
-                        <a 
-                          href={`mailto:${member.social.email}`}
-                          className={styles['team-card__social-link']}
-                          aria-label={`Email ${member.name}`}
-                        >
-                          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                            <path d="M22 6L12 13L2 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                          </svg>
-                        </a>
-                      )}
-                    </div>
+                  <div className={styles['faculty-info']}>
+                    <h3 className={styles['faculty-name']}>{faculty.name}</h3>
+                    <p className={styles['faculty-role']}>{faculty.role1}</p>
+                     <p className={styles['faculty-role']}>{faculty.role2}</p>
+                    <p className={styles['faculty-affiliation']}>{faculty.affiliation}</p>
                   </div>
                 </div>
-              ))}
-            </div>
+                <div className={styles['faculty-image']}>
+                  <Image 
+                    src={faculty.image} 
+                    alt={faculty.name} 
+                    width={280} 
+                    height={280}
+                    style={{ 
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover'
+                    }}
+                  />
+                </div>
+              </div>
+            ))}
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+
+  
+    </>
   )
 }

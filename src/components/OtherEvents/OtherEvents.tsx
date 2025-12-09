@@ -19,11 +19,12 @@ export default function OtherEvents() {
         name: 'GDG Team',
         role: 'Organizers',
         bio: 'The core GDG team will walk participants through the hackathon structure and rules.',
-        image: 'https://images.unsplash.com/photo-1600585154363-67eb9e2ba164?w=400&q=80'
+        image: '',
       },
       eventDetails: {
         date: 'December 11, 2025',
-        time: 'Online',
+        time: '08:30 PM – 09:30 PM',
+        platform: 'Google Meet',
         mode: 'Online'
       }
     },
@@ -36,12 +37,12 @@ export default function OtherEvents() {
         name: 'Samarth Sharma',
         role: 'Industry Expert',
         bio: 'Samarth Sharma is a seasoned professional known for product-driven development and tech mentorship.',
-        image: 'https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?w=400&q=80'
+        image: '/assets/Guests/samarth.jpg',
       },
       eventDetails: {
         date: 'December 21, 2025',
         time: '8:30 PM – 10:00 PM',
-        venue: 'Online',
+        platform: 'Google Meet',
         mode: 'Online'
       }
     },
@@ -54,12 +55,12 @@ export default function OtherEvents() {
         name: 'Balavigneshwaran Manogaran',
         role: 'Industry Expert',
         bio: 'Balavigneshwaran brings extensive experience in scalable systems, architecture design, and leadership.',
-        image: 'https://images.unsplash.com/photo-1502685104226-ee32379fefbe?w=400&q=80'
+        image: '/assets/Guests/bala.jpg'
       },
       eventDetails: {
         date: 'December 22, 2025',
         time: '11:30 AM – 1:00 PM',
-        venue: 'Online',
+        platform: 'Google Meet',
         mode: 'Online'
       }
     },
@@ -72,12 +73,12 @@ export default function OtherEvents() {
         name: 'Kartikey Verma',
         role: 'Industry Mentor',
         bio: 'Kartikey Verma specializes in product engineering and innovation, mentoring teams across domains.',
-        image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&q=80'
+        image: '/assets/Guests/kartikey.jpg'
       },
       eventDetails: {
         date: 'December 24, 2025',
         time: '8:30 PM – 10:00 PM',
-        venue: 'Online',
+        platform: 'Google Meet',
         mode: 'Online'
       }
     }
@@ -195,20 +196,22 @@ export default function OtherEvents() {
                 </div>
 
                 <div className={styles['modal__speaker-card']}>
-                  <div className={styles['modal__speaker-image']}>
-                    <Image
-                      src={events[selectedEvent].speaker.image}
-                      alt={events[selectedEvent].speaker.name}
-                      width={400}
-                      height={400}
-                      sizes="(max-width: 768px) 80px, 100px"
-                      style={{
-                        width: '100%',
-                        height: 'auto',
-                        objectFit: 'cover'
-                      }}
-                    />
-                  </div>
+                  {events[selectedEvent].speaker.image && (
+                    <div className={styles['modal__speaker-image']}>
+                      <Image
+                        src={events[selectedEvent].speaker.image}
+                        alt={events[selectedEvent].speaker.name}
+                        width={400}
+                        height={400}
+                        sizes="(max-width: 768px) 80px, 100px"
+                        style={{
+                          width: '100%',
+                          height: 'auto',
+                          objectFit: 'cover'
+                        }}
+                      />
+                    </div>
+                  )}
                   <div className={styles['modal__speaker-info']}>
                     <h5 className={styles['modal__speaker-name']}>
                       {events[selectedEvent].speaker.name}
@@ -265,8 +268,8 @@ export default function OtherEvents() {
                         <path d="M3.62 8.49c1.97-8.66 14.8-8.65 16.76.01 1.15 5.08-2.01 9.38-4.78 12.04a5.193 5.193 0 01-7.21 0c-2.76-2.66-5.92-6.97-4.77-12.05z" stroke="currentColor" strokeWidth="1.5" />
                       </svg>
                       <div>
-                        <p className={styles['modal__detail-label']}>Venue</p>
-                        <p className={styles['modal__detail-value']}>{events[selectedEvent].eventDetails.venue}</p>
+                        <p className={styles['modal__detail-label']}>Platform</p>
+                        <p className={styles['modal__detail-value']}>{events[selectedEvent].eventDetails.platform}</p>
                       </div>
                     </div>
                     <div className={styles['modal__detail-item']}>

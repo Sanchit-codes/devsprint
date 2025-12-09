@@ -100,7 +100,7 @@ export default function Hero() {
               </div>
               <div>
                 <div className={styles.label}>Date</div>
-                <div className={styles.value}>Jan 5-6, 2026</div>
+                <div className={styles.value}>8th Dec 2025 - 15th Jan 2026</div>
               </div>
               <div className={styles.cardGlow}></div>
             </div>

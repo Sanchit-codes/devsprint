@@ -21,9 +21,9 @@ export default function TeamMembers() {
   {
     id: 2,
     name: 'Unnati Jadon',
-    role: 'Frontend Developer',
-    description: 'Creates clean, interactive, and user-friendly interfaces with smooth visual design.',
-    image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&q=80',
+    role: 'FULLSTACK DEVELOPER',
+    description: 'Builds end-to-end web solutions combining seamless front-end flow with robust back-end architecture.',
+    image: '/assets/developers/unnati.avif',
     social: {
       linkedin: 'http://www.linkedin.com/in/unnati-jadon-610414232',
       github: 'https://github.com/Unnati1007',
@@ -35,7 +35,7 @@ export default function TeamMembers() {
     name: 'Harsh Manmode',
     role: 'Frontend Developer',
     description: 'Builds secure APIs and scalable backend systems that keep applications running smoothly.',
-    image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&q=80',
+    image: '/assets/developers/harsh.avif',
     social: {
       linkedin: 'harshmanmode79@gmail.com',
       github: 'https://github.com/Harsh-2006-git',
@@ -47,7 +47,7 @@ export default function TeamMembers() {
     name: 'Prasun Singh',
     role: 'Graphic Design',
     description: 'Designs creative visuals, brand assets, and graphics that deliver clear visual impact.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&q=80',
+    image: '/assets/developers/prasun.avif',
     social: {
       linkedin: 'https://www.linkedin.com/in/prasun-singh-704944329?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app',
       github: 'https://github.com/prasun568',
@@ -59,7 +59,7 @@ export default function TeamMembers() {
     name: 'Adya Acharya',
     role: 'Content & Management',
     description: 'Manages content, communication, and workflow to ensure smooth and organized execution.',
-    image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&q=80',
+    image: '/assets/developers/adya.avif',
     social: {
       linkedin: "http://www.linkedin.com/in/adya-acharya",
       github: "https://github.com/AdyaAcharya",

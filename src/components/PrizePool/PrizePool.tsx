@@ -17,7 +17,7 @@ export default function PrizePool() {
   const headerRef = useRef<HTMLDivElement>(null)
   const [isHeaderVisible, setIsHeaderVisible] = useState(false)
   const [isCardVisible, setIsCardVisible] = useState(Array(3).fill(false))
-  
+
   useEffect(() => {
     const headerObserver = new IntersectionObserver(
       (entries) => {
@@ -75,7 +75,7 @@ export default function PrizePool() {
     {
       rank: 'Top 3',
       icon: '🏆',
-      perks: 'Cash Prize + Exclusive Swags + Certificates + Internship Opportunities',
+      perks: 'Exclusive Swags + Certificates',
       className: 'first',
       gradient: 'linear-gradient(135deg, #fbbc04 0%, #ea8600 100%)',
       glow: 'rgba(251, 188, 4, 0.15)'
@@ -83,7 +83,7 @@ export default function PrizePool() {
     {
       rank: 'Top 10',
       icon: '✨',
-      perks: 'Premium Swags + Certificates + Featured on Our Platform',
+      perks: 'Certificates + Featured on Our Platform',
       className: 'second',
       gradient: 'linear-gradient(135deg, #4285f4 0%, #1a73e8 100%)',
       glow: 'rgba(66, 133, 244, 0.15)'
@@ -91,7 +91,7 @@ export default function PrizePool() {
     {
       rank: 'All Participants',
       icon: '🎉',
-      perks: 'Certificates of Participation + Goodies + Networking Opportunities',
+      perks: 'Certificates',
       className: 'third',
       gradient: 'linear-gradient(135deg, #ea4335 0%, #c62828 100%)',
       glow: 'rgba(234, 67, 53, 0.15)'
@@ -111,28 +111,26 @@ export default function PrizePool() {
       </div>
 
       <div className={styles.container}>
-
-        {/* NEW UPDATED HEADING WITH SIMILAR STYLING AS RULES */}
-        <div className="dual-heading" ref={headerRef}>
-          <div className={styles.headingBack}>WIN AMAZING PRIZES</div>
-          <h2 className={`${styles.headingFront} ${isHeaderVisible ? styles.visible : ''}`}>
-            Win Amazing Prizes
-          </h2>
+        {/* Header Section with improved styling */}
+        <div className={styles.headerContainer} ref={headerRef}>
+          {/* Badge/Title with animation */}
+          <div className="dual-heading">
+            <div className="heading-back">WINNING PRIZES</div>
+            <h2 className="heading-front">AMAZING WINNING PRIZES</h2>
+          </div>
         </div>
-
 
         {/* Prize Cards */}
         <div className={styles.prizeContainer}>
           <div className={styles.prizeCards}>
             {prizes.map((prize, index) => (
-              <div 
+              <div
                 key={index}
                 ref={el => {
                   if (el) prizeRefs.current[index] = el
                 }}
-                className={`${styles.prizeCard} ${styles[prize.className]} ${
-                  isCardVisible[index] ? styles.visible : ''
-                }`}
+                className={`${styles.prizeCard} ${styles[prize.className]} ${isCardVisible[index] ? styles.visible : ''
+                  }`}
                 data-index={index}
               >
                 {prize.className === 'first' && (
@@ -141,7 +139,7 @@ export default function PrizePool() {
                   </div>
                 )}
 
-                <div 
+                <div
                   className={styles.cardGradient}
                   style={{ background: prize.gradient }}
                 ></div>
@@ -152,7 +150,7 @@ export default function PrizePool() {
                   <div className={styles.iconWrapper}>
                     <div className={styles.iconBackground}>
                       <div className={styles.prizeIcon}>{prize.icon}</div>
-                      <div 
+                      <div
                         className={styles.iconGlow}
                         style={{ boxShadow: `0 0 35px ${prize.glow}` }}
                       ></div>
@@ -181,18 +179,6 @@ export default function PrizePool() {
         </div>
 
         {/* Additional Info */}
-        <div className={styles.additionalInfo}>
-          <div className={styles.infoCard}>
-            <div className={styles.infoIcon}>🎯</div>
-            <div className={styles.infoContent}>
-              <h4 className={styles.infoTitle}>Additional Benefits</h4>
-              <p className={styles.infoDescription}>
-                All winners get featured on our platform, LinkedIn shoutouts, 
-                and opportunities to connect with industry leaders.
-              </p>
-            </div>
-          </div>
-        </div>
 
       </div>
     </section>

@@ -38,7 +38,7 @@ export default function Footer() {
               className={styles['footer__logo-icon']}
             />
             <div className={styles['footer__logo-text']}>
-              <div className={styles.brand}>GDG MITS</div>
+              <div className={styles.brand}>GDGoC MITS DU</div>
               <div className={styles.event}>DevSprint 2026</div>
             </div>
           </div>

@@ -32,6 +32,13 @@ const nextConfig = {
         hostname: 'images.unsplash.com',
         port: '',
         pathname: '/**',
+      },
+      // Add the MITS domain here
+      {
+        protocol: 'https',
+        hostname: 'web.mitsgwalior.in',
+        port: '',
+        pathname: '/**',
       }
     ],
   },

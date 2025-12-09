@@ -8,8 +8,8 @@ export default function AboutGDG() {
       <div className="container">
         {/* Heading */}
         <div className="dual-heading">
-          <div className="heading-back">ABOUT GDG</div>
-          <h2 className="heading-front">Google Developer Groups MITS</h2>
+          <div className="heading-back">ABOUT GDGoC MITS-DU</div>
+          <h2 className="heading-front">GDG on Campus - MITS DU</h2>
         </div>
 
         {/* Content */}
@@ -18,7 +18,7 @@ export default function AboutGDG() {
           <div className={styles['about-gdg__text']}>
             <h3>Community-Driven Innovation</h3>
             <p>
-              Google Developer Groups (GDG) MITS is a community of developers passionate 
+              Google Developer Group On Campus MITS-DU is a community of developers passionate 
               about Google technologies and open-source development. We organize workshops, 
               hackathons, and tech talks to foster learning and innovation.
             </p>

@@ -12,20 +12,26 @@ import { GoogleMaterialIcon, LoadingSpinner } from '@/components/ui/Icons';
 
 const seminars = [
   {
-    value: 'ai-future',
-    label: 'AI & Future of Technology',
+    value: 'Info Session',
+    label: 'Info Session + Submission Kickoff',
     icon: '',
     description: 'Explore AI advancements and emerging tech trends'
   },
   {
-    value: 'web3-blockchain',
-    label: 'Web3 & Blockchain Revolution',
+    value: 'Expert Session 1',
+    label: 'Expert Session 1 — Samarth Sharma',
     icon: '',
     description: 'Dive into decentralized systems and blockchain applications'
   },
   {
-    value: 'cloud-devops',
-    label: 'Cloud Computing & DevOps',
+    value: 'Expert Session 2',
+    label: 'Expert Session 2 — Balavigneshwaran Manogaran',
+    icon: '',
+    description: 'Master modern infrastructure and cloud-native technologies'
+  },
+  {
+    value: 'Expert Session 3',
+    label: 'Expert Session 3 — Kartikey Verma',
     icon: '',
     description: 'Master modern infrastructure and cloud-native technologies'
   },
@@ -106,7 +112,18 @@ export default function RegisterPage() {
       const result = await response.json();
 
       if (response.ok) {
-        showToastMessage("Success!", "Registration completed successfully!", "success");
+        if (result.updated) {
+          // Registration was updated with new seminars
+          const addedSeminars = result.addedSeminars?.join(', ') || 'selected seminars';
+          showToastMessage(
+            "Registration Updated!", 
+            `You have been added to: ${addedSeminars}`, 
+            "success"
+          );
+        } else {
+          // New registration
+          showToastMessage("Success!", "Registration completed successfully!", "success");
+        }
         setTimeout(() => {
           setShowSuccessDialog(true);
         }, 500);
@@ -358,8 +375,8 @@ export default function RegisterPage() {
                   <div className={styles.detailItem}>
                     
                     <div>
-                      <span className={styles.detailLabel}>Venue</span>
-                      <span className={styles.detailValue}>MITS Campus, Gwalior</span>
+                      <span className={styles.detailLabel}>Platform</span>
+                      <span className={styles.detailValue}>Google Meet</span>
                     </div>
                   </div>
 
@@ -367,7 +384,10 @@ export default function RegisterPage() {
                     
                     <div>
                       <span className={styles.detailLabel}>Time</span>
-                      <span className={styles.detailValue}>9:00 AM - 5:00 PM</span>
+                      <span className={styles.detailValue}>Info Session: 8:30PM - 9:30 PM</span>
+                      <span className={styles.detailValue}>Expert Session 1: 8:30 PM – 10:00 PM </span>
+                      <span className={styles.detailValue}>Expert Session 2: 11:30 AM – 1:00 PM </span>
+                      <span className={styles.detailValue}>Expert Session 3: 8:30 PM – 10:00 PM</span>
                     </div>
                   </div>
 
@@ -393,14 +413,6 @@ export default function RegisterPage() {
                     </li>
                     <li>
                       
-                      Learning Materials
-                    </li>
-                    <li>
-                      
-                      Refreshments
-                    </li>
-                    <li>
-                      
                       Q&A Sessions
                     </li>
                   </ul>
@@ -410,12 +422,12 @@ export default function RegisterPage() {
                   <h4 className={styles.contactTitle}>Contact Information</h4>
                   <div className={styles.contactLinks}>
                     <a href="mailto:gdg@mits.ac.in" className={styles.contactLink}>
-                      <GoogleMaterialIcon name="mail" size={18} />
-                      gdg@mits.ac.in
+                      <GoogleMaterialIcon name="person" size={18} />
+                      Mayank Padhi
                     </a>
                     <a href="tel:+919876543210" className={styles.contactLink}>
                       <GoogleMaterialIcon name="call" size={18} />
-                      +91 98765 43210
+                      +91 90391 41772
                     </a>
                   </div>
                 </div>

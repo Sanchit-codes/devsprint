@@ -13,10 +13,22 @@ export default function TeamMembers() {
   const teamMembers = [
     {
       id: 1,
+      name: 'Vaibhav Sharma',
+      role: 'GDGoC Lead',
+      description: 'Leads the GDGoC initiative with vision and dedication, fostering a collaborative and innovative community.',
+      image: '/assets/team/vaibhav.jpeg',
+      social: {
+        linkedin: 'https://www.linkedin.com/in/vaibhav-sharma-123456789/',
+        github: 'https://github.com/vaibhavsharma',
+        email: 'vaibhavsharma@gmail.com'
+      }
+    },
+    {
+      id: 2,
       name: 'Akash Singh',
       role: 'Content Lead',
       description: 'Crafts compelling narratives that engage and inspire our community through thoughtful content strategy.',
-      image: '/assets/images/DevSprint.png',
+      image: '/assets/team/aakash.jpeg',
       social: {
         linkedin: 'https://www.linkedin.com/in/akash-singh-6bb244214/',
         github: 'https://github.com/AkashSingh6260',
@@ -24,11 +36,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 2,
+      id: 3,
       name: 'Tanushka Tiwari',
       role: 'Graphic Lead',
       description: 'Transforms ideas into stunning visual experiences with creative design and innovative graphics.',
-      image: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=300&h=300&fit=crop&q=80',
+      image: '/assets/team/tanushka.avif',
       social: {
         linkedin: 'https://www.linkedin.com/in/tanushka-tiwari2105/',
         github: 'https://github.com/tanushkat96',
@@ -36,11 +48,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 3,
+      id: 4,
       name: 'Jatin Pathak',
       role: 'PR Lead',
       description: 'Builds strong relationships and creates impactful communication strategies to amplify our reach.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&q=80',
+      image: '/assets/team/jatin.avif',
       social: {
         linkedin: 'https://www.linkedin.com/in/jatin-pathak-a1a457281',
         github: 'https://github.com/Jatzz26',
@@ -48,11 +60,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 4,
+      id: 5,
       name: 'Devyash Rasela',
       role: 'Technical Lead',
       description: 'Drives innovation with cutting-edge solutions and robust technical architecture.',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&q=80',
+      image: '/assets/team/devyash.jpg',
       social: {
         linkedin: 'https://www.linkedin.com/in/devyash-rasela',
         github: 'https://github.com/devyashrasela',
@@ -60,11 +72,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 5,
+      id: 6,
       name: 'Rishita Mukherjee',
       role: 'Social Media Lead',
       description: 'Amplifies our voice across digital platforms with strategic social media campaigns.',
-      image: '/assets/images/jatin.png',
+      image: '/assets/team/rishita.png',
       social: {
         linkedin: "http://www.linkedin.com/in/rishita-mukherjee-293045325",
         github: "https://github.com/rishita-73",
@@ -72,11 +84,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 6,
+      id: 7,
       name: 'Adhiraj Singh Bhadouriya',
       role: 'Management Lead',
       description: 'Orchestrates seamless operations and drives team synergy for maximum efficiency.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=300&h=300&fit=crop&q=80',
+      image: '/assets/team/adhiraj.avif',
       social: {
         linkedin: 'https://www.linkedin.com/in/adhiraj05',
         github: 'https://github.com/Adhi-raaj',
@@ -84,11 +96,11 @@ export default function TeamMembers() {
       }
     },
     {
-      id: 7,
+      id: 8,
       name: 'Utsav Kumawat',
       role: 'Videography Lead',
       description: 'Captures unforgettable moments and tells our story through compelling visual narratives.',
-      image: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=300&h=300&fit=crop&q=80',
+      image: '/assets/team/utsav.png',
       social: {
         linkedin: 'https://www.linkedin.com/in/alwaysutsav',
         github: 'https://github.com/always-utsav',
