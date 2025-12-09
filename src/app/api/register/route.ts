@@ -10,14 +10,15 @@ export async function POST(req: NextRequest) {
 
     const name = formData.get('name') as string;
     const email = formData.get('email') as string;
+    const mobile = formData.get('mobile') as string;
     const enrollment = formData.get('enrollment') as string;
     const branch = formData.get('branch') as string;
     const year = formData.get('year') as string;
     const seminars = formData.get('seminars') as string;
 
-    console.log('[/api/register] - Fields extracted:', { name, email, enrollment, branch, year, seminars });
+    console.log('[/api/register] - Fields extracted:', { name, email, mobile, enrollment, branch, year, seminars });
 
-    if (!name || !email || !enrollment || !branch || !year || !seminars) {
+    if (!name || !email || !mobile || !enrollment || !branch || !year || !seminars) {
       console.error('[/api/register] - Missing required fields.');
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
@@ -77,14 +78,14 @@ export async function POST(req: NextRequest) {
     }
 
     const values = [
-        [name, email, enrollment, branch, year, seminars, new Date().toISOString()]
+        [name, email, mobile, enrollment, branch, year, seminars, new Date().toISOString()]
     ];
     
     console.log('[/api/register] - Appending values to spreadsheet:', values);
 
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
-      range: 'A1:G1', // Updated range for 7 columns (name, email, enrollment, branch, year, seminars, timestamp)
+      range: 'A1:H1', // Updated range for 8 columns (name, email, mobile, enrollment, branch, year, seminars, timestamp)
       valueInputOption: 'USER_ENTERED',
       requestBody: {
         values,
@@ -213,6 +214,10 @@ export async function POST(req: NextRequest) {
                   <tr>
                     <td style="padding: 6px 0; color: #666666; font-size: 14px;">Email:</td>
                     <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${email}</td>
+                  </tr>
+                  <tr>
+                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Mobile:</td>
+                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${mobile}</td>
                   </tr>
                   <tr>
                     <td style="padding: 6px 0; color: #666666; font-size: 14px;">Enrollment:</td>
