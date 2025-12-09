@@ -72,7 +72,7 @@ export default function TeamMembers() {
     <section id="team" className={styles['team-section']}>
       <div className={styles['team-container']}>
         <div className={styles['team-header']}>
-          <h2 className={styles['team-title']}>Meet Our Team</h2>
+          <h2 className={styles['team-title']}>Meet Our Developer</h2>
           <p className={styles['team-subtitle']}>
             Our diverse team brings together expertise and passion for excellence.
           </p>
