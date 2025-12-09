@@ -87,10 +87,6 @@ export default function Hero() {
         <div className={styles.hero__left}>
           {/* Title */}
           <h1 className={styles.hero__title}>
-            {/* <span className={styles.badge}>
-              <span className={styles.badgePulse}></span>
-              Live Event
-            </span> */}
             <span className={styles.mainTitle}>
               Dev<span className={styles.highlight}>Sprint</span>
             </span>
@@ -111,7 +107,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Now 3 buttons in a responsive grid */}
           <div className={styles.hero__buttons}>
             <a
               href="https://vision.hack2skill.com/event/GDGoC-25-MITS-DevSprint"
@@ -126,10 +122,20 @@ export default function Hero() {
               <div className={styles.btnPulse}></div>
             </a>
 
+            <a 
+              href="#schedule" 
+              className={`${styles.btn} ${styles.btnSecondary}`}
+            >
+              <span className={`${styles.btnIcon} material-symbols-outlined`}>event</span>
+              <span className={styles.btnText}>Event Schedule</span>
+            </a>
 
-            <a href="#discord" className={`${styles.btn} ${styles.btnSecondary}`}>
-              <span className={`${styles.btnIcon} material-symbols-outlined`}></span>
-              <span className={styles.btnText}>Downlaod Brochure</span>
+            <a 
+              href="#brochure" 
+              className={`${styles.btn} ${styles.btnTertiary}`}
+            >
+              <span className={`${styles.btnIcon} material-symbols-outlined`}>download</span>
+              <span className={styles.btnText}>Download Brochure</span>
             </a>
           </div>
         </div>
@@ -184,10 +190,9 @@ export default function Hero() {
                       <span className={styles.trackName}>Cloud & AI</span>
                     </div>
                     <div className={styles.track}>
-  <span className={styles.trackIcon}>🔗</span>
-  <span className={styles.trackName}>Blockchain</span>
-</div>
-
+                      <span className={styles.trackIcon}>🔗</span>
+                      <span className={styles.trackName}>Blockchain</span>
+                    </div>
                   </div>
 
                   <div className={styles.terminalOutput} style={{animationDelay: '2s'}}>

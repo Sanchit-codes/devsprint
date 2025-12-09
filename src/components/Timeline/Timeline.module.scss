@@ -3,11 +3,19 @@
 .timeline {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem 1rem;
+  padding: 4rem 1rem;
   
   &__heading {
     text-align: center;
-    margin-bottom: 3rem;
+    margin-bottom: 4rem;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease 0.3s;
+    
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
     
     h2 {
       font-size: 2.5rem;
@@ -40,8 +48,9 @@
       top: 0;
       bottom: 0;
       width: 3px;
-      background: #e0e0e0;
+      background: rgba(224, 224, 224, 0.5);
       transform: translateX(-50%);
+      border-radius: 3px;
       
       @media (max-width: 768px) {
         left: 25px;
@@ -49,10 +58,37 @@
     }
   }
   
+  &__progress {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    transform: translateX(-50%);
+    z-index: 1;
+    
+    @media (max-width: 768px) {
+      left: 25px;
+    }
+  }
+  
+  &__progressBar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to bottom, #4285f4, #34a853);
+    transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: 3px;
+    box-shadow: 0 0 10px rgba(66, 133, 244, 0.3);
+  }
+  
   &__events {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem;
+    position: relative;
+    z-index: 2;
   }
   
   &__item {
@@ -60,6 +96,19 @@
     width: 100%;
     position: relative;
     min-height: 120px;
+    opacity: 0;
+    transform: translateY(20px);
+    
+    &.visible {
+      animation: fadeInUp 0.8s ease forwards;
+    }
+  }
+  
+  // Apply staggered delays using data-delay attribute
+  @for $i from 0 through 9 {
+    .timeline__item[data-delay="#{$i}"] {
+      animation-delay: #{$i * 0.1}s;
+    }
   }
   
   // Odd items (left side)
@@ -68,6 +117,8 @@
       margin-left: 55%;
       margin-right: 0;
       padding: 1.5rem 1.5rem 1.5rem 2rem;
+      transform: translateX(30px);
+      opacity: 0;
       
       &::before {
         content: '';
@@ -96,6 +147,17 @@
         z-index: -1;
       }
       
+      &.show {
+        animation: slideInRight 0.8s ease forwards;
+      }
+      
+      // Apply staggered delays for content
+      @for $i from 0 through 9 {
+        &[data-delay="#{$i}"] {
+          animation-delay: #{$i * 0.1 + 0.3}s;
+        }
+      }
+      
       @media (max-width: 768px) {
         margin-left: 50px;
         margin-right: 0;
@@ -117,6 +179,8 @@
       margin-left: 0;
       padding: 1.5rem 2rem 1.5rem 1.5rem;
       text-align: right;
+      transform: translateX(-30px);
+      opacity: 0;
       
       &::before {
         content: '';
@@ -145,6 +209,17 @@
         z-index: -1;
       }
       
+      &.show {
+        animation: slideInLeft 0.8s ease forwards;
+      }
+      
+      // Apply staggered delays for content
+      @for $i from 0 through 9 {
+        &[data-delay="#{$i}"] {
+          animation-delay: #{$i * 0.1 + 0.3}s;
+        }
+      }
+      
       @media (max-width: 768px) {
         margin-left: 50px;
         margin-right: 0;
@@ -166,7 +241,7 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.8);
     width: 50px;
     height: 50px;
     border-radius: 50%;
@@ -178,6 +253,29 @@
     color: white;
     z-index: 10;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    
+    .timeline__item.visible & {
+      animation: badgePop 0.6s ease forwards;
+    }
+    
+    // Apply staggered delays for badges
+    @for $i from 0 through 9 {
+      .timeline__item.visible[data-delay="#{$i}"] & {
+        animation-delay: #{$i * 0.1 + 0.5}s;
+      }
+    }
+    
+    &.active {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+      
+      .timeline__badgeGlow {
+        opacity: 1;
+        transform: scale(1.4);
+      }
+    }
     
     &.blue {
       background: #4285f4;
@@ -203,13 +301,33 @@
     }
   }
   
+  &__badgeGlow {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: 50%;
+    background: inherit;
+    opacity: 0;
+    z-index: -1;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    filter: blur(8px);
+  }
+  
   &__content {
     width: 45%;
     background: white;
     border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
     position: relative;
     border: 1px solid rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    
+    &:hover {
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+      transform: translateY(-2px);
+    }
     
     @media (max-width: 768px) {
       width: calc(100% - 60px);
@@ -245,4 +363,80 @@
     color: $text-secondary;
     margin: 0;
   }
+  
+  &__connector {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 3px;
+    height: calc(100% + 2.5rem);
+    background: rgba(224, 224, 224, 0.5);
+    transform: translateX(-50%);
+    
+    @media (max-width: 768px) {
+      left: 25px;
+    }
+  }
+}
+
+// Animation Keyframes
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes badgePop {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.05);
+  }
+}
+
+.timeline__badge.active {
+  animation: float 2s ease-in-out infinite;
 }

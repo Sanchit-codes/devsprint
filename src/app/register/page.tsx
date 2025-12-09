@@ -300,7 +300,7 @@ export default function RegisterPage() {
                       </>
                     ) : (
                       <>
-                        <GoogleMaterialIcon name="how_to_reg" size={20} />
+                        {/* <GoogleMaterialIcon name="how_to_reg" size={20} /> */}
                         Register for Seminars
                       </>
                     )}
@@ -315,7 +315,7 @@ export default function RegisterPage() {
                 <div className={styles.infoHeader}>
                   <h3 className={styles.infoTitle}>Event Details</h3>
                   <div className={styles.dateBadge}>
-                    <GoogleMaterialIcon name="calendar_today" size={16} />
+                    {/* <GoogleMaterialIcon name="calendar_today" size={16} /> */}
                     20-21 Jan 2024
                   </div>
                 </div>
