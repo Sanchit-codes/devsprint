@@ -27,7 +27,7 @@ export default function Header() {
 
   const handleNavClick = (href: string) => {
     closeMobileMenu()
-    
+
     // Smooth scroll to section
     const id = href.replace('#', '')
     const element = document.getElementById(id)
@@ -35,11 +35,14 @@ export default function Header() {
       const offset = 80
       const elementPosition = element.getBoundingClientRect().top
       const offsetPosition = elementPosition + window.pageYOffset - offset
-      
+
       window.scrollTo({
         top: offsetPosition,
         behavior: 'smooth'
       })
+    } else {
+      // If section doesn't exist on current page, navigate to home page with anchor
+      window.location.href = `/${href}`
     }
   }
 
@@ -47,13 +50,13 @@ export default function Header() {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') setMobileMenuOpen(false)
     }
-    
+
     const handleResize = () => {
       if (window.innerWidth > 768) {
         setMobileMenuOpen(false)
       }
     }
-    
+
     if (mobileMenuOpen) {
       document.addEventListener('keydown', handleEscape)
       window.addEventListener('resize', handleResize)
@@ -61,7 +64,7 @@ export default function Header() {
     } else {
       document.body.style.overflow = 'unset'
     }
-    
+
     return () => {
       document.removeEventListener('keydown', handleEscape)
       window.removeEventListener('resize', handleResize)
@@ -75,24 +78,24 @@ export default function Header() {
     { href: '#tracks', label: 'Tracks' },
     { href: '#timeline', label: 'Schedule' },
     { href: '#event', label: 'Events' },
-  
+
     { href: '#faq', label: 'FAQ' },
   ]
 
   return (
     <>
       {mobileMenuOpen && (
-        <div 
-          className={styles.overlay} 
+        <div
+          className={styles.overlay}
           onClick={closeMobileMenu}
           aria-hidden="true"
         />
       )}
-      
+
       <header className={`${styles.header} ${scrolled ? styles.scrolled : ''}`}>
         <div className={styles.container}>
-          <a 
-            href="#home" 
+          <a
+            href="#home"
             className={styles.logoLink}
             onClick={(e) => {
               e.preventDefault()
@@ -109,8 +112,8 @@ export default function Header() {
               priority
             />
           </a>
-          
-          <nav 
+
+          <nav
             className={`${styles.nav} ${mobileMenuOpen ? styles.navOpen : ''}`}
             id="mobile-navigation"
           >
@@ -126,19 +129,19 @@ export default function Header() {
                 {item.label}
               </a>
             ))}
-            <a 
-              href="#register" 
+            <a
+              href="https://vision.hack2skill.com/event/GDGoC-25-MITS-DevSprint"
               className={styles.ctaButton}
-              onClick={(e) => {
-                e.preventDefault()
-                handleNavClick('#register')
-              }}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMobileMenu}
             >
               Register Now
             </a>
+
           </nav>
-          
-          <button 
+
+          <button
             className={`${styles.menuToggle} ${mobileMenuOpen ? styles.menuToggleOpen : ''}`}
             onClick={toggleMobileMenu}
             aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}

@@ -3,36 +3,26 @@ import styles from './Footer.module.scss'
 
 export default function Footer() {
   const socialLinks = [
-    {
-      name: 'Twitter',
-      icon: 'https://img.icons8.com/ios-filled/50/000000/twitter.png',
-      url: 'https://twitter.com/gdgmits',
-      className: 'twitter'
-    },
+  
     {
       name: 'LinkedIn',
       icon: 'https://img.icons8.com/ios-filled/50/000000/linkedin.png',
-      url: 'https://linkedin.com/company/gdg-mits',
+      url: 'https://www.linkedin.com/company/gdg-on-campus-mits-gwalior/',
       className: 'linkedin'
     },
     {
       name: 'Instagram',
       icon: 'https://img.icons8.com/ios-filled/50/000000/instagram-new.png',
-      url: 'https://instagram.com/gdg.mits',
+      url: 'https://www.instagram.com/gdg.mits?igsh=MTVwMnRzbDFna2hrYg==/',
       className: 'instagram'
     },
     {
       name: 'GitHub',
       icon: 'https://img.icons8.com/ios-filled/50/000000/github.png',
-      url: 'https://github.com/gdg-mits',
+      url: 'https://www.linkedin.com/company/gdg-on-campus-mits-gwalior/',
       className: 'github'
     },
-    {
-      name: 'Discord',
-      icon: 'https://img.icons8.com/ios-filled/50/000000/discord-logo.png',
-      url: 'https://discord.gg/gdgmits',
-      className: 'discord'
-    }
+    
   ]
 
   return (

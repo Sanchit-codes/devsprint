@@ -5,12 +5,14 @@
     display: flex;
     flex-direction: column;
     gap: 5rem;
-    
+
     @include responsive($breakpoint-tablet) {
       gap: 4rem;
     }
   }
-  
+
+  /* ---------------- RULES SECTION ---------------- */
+
   &__content {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -18,41 +20,41 @@
     align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    
+
     @include responsive($breakpoint-tablet) {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
   }
-  
+
   &__text {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    
+
     h3 {
       font-size: 2.5rem;
       font-weight: 700;
       color: $text-primary;
       margin-bottom: 1.5rem;
       line-height: 1.2;
-      
+
       @include responsive($breakpoint-mobile) {
         font-size: 2rem;
       }
     }
-    
+
     p {
       font-size: 1rem;
       line-height: 1.6;
       color: $text-secondary;
     }
   }
-  
+
   &__code {
     @include flex-center;
   }
-  
+
   &__window {
     background: #e8e8e8;
     border-radius: 8px;
@@ -61,7 +63,7 @@
     width: 100%;
     max-width: 600px;
   }
-  
+
   &__header {
     background: #d9d9d9;
     padding: 0.75rem 1rem;
@@ -69,37 +71,35 @@
     align-items: center;
     gap: 1rem;
   }
-  
+
   &__buttons {
     display: flex;
     gap: 0.5rem;
   }
-  
+
   &__button {
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    
+
     &[data-color="red"] {
       background: #ff5f56;
     }
-    
     &[data-color="yellow"] {
       background: #ffbd2e;
     }
-    
     &[data-color="green"] {
       background: #27c93f;
     }
   }
-  
+
   &__filename {
     font-size: 0.75rem;
     color: #5f5f5f;
     text-align: center;
     flex: 1;
   }
-  
+
   &__body {
     background: #ffffff;
     padding: 1.5rem;
@@ -108,24 +108,24 @@
     line-height: 1.8;
     color: #333;
     min-height: 280px;
-    
+
     pre {
       margin: 0;
       white-space: pre-wrap;
       word-wrap: break-word;
     }
   }
-  
+
   &__line {
     margin-bottom: 0.5rem;
   }
-  
+
   &__number {
     color: $google-blue;
     font-weight: 600;
     margin-right: 0.5rem;
   }
-  
+
   &__comment {
     color: $google-green;
     font-style: italic;
@@ -133,7 +133,8 @@
   }
 }
 
-// FAQ Styles
+/* ---------------- FAQ SECTION ---------------- */
+
 .faq {
   &__content {
     display: grid;
@@ -142,45 +143,45 @@
     align-items: flex-start;
     max-width: 1200px;
     margin: 0 auto;
-    
+
     @include responsive($breakpoint-tablet) {
       grid-template-columns: 1fr;
       gap: 3rem;
     }
   }
-  
+
   &__heading {
     display: flex;
     align-items: center;
-    
+
     h3 {
       font-size: 2.5rem;
       font-weight: 700;
       color: $text-primary;
       line-height: 1.2;
-      
+
       @include responsive($breakpoint-mobile) {
         font-size: 2rem;
       }
     }
   }
-  
+
   &__list {
     display: flex;
     flex-direction: column;
     gap: 0;
   }
-  
+
   &__item {
-    background: transparent;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    
+
     &:last-child {
       border-bottom: none;
     }
   }
-  
+
+  /* Question Button */
   &__question {
     display: flex;
     align-items: center;
@@ -191,31 +192,32 @@
     cursor: pointer;
     width: 100%;
     text-align: left;
-    
+
     @include responsive($breakpoint-mobile) {
       padding: 1.25rem 0;
       gap: 1rem;
     }
   }
-  
+
   &__icon {
     color: $google-blue;
     font-size: 1.25rem;
     font-weight: 700;
     flex-shrink: 0;
   }
-  
+
   &__text {
     flex: 1;
     font-size: 1.125rem;
     color: $text-primary;
     font-weight: 500;
-    
+
     @include responsive($breakpoint-mobile) {
       font-size: 1rem;
     }
   }
-  
+
+  /* + Icon */
   &__plus {
     color: $text-secondary;
     font-size: 1.75rem;
@@ -223,10 +225,30 @@
     flex-shrink: 0;
     transition: transform 0.3s ease;
     line-height: 1;
-    
+
     .faq__item:hover & {
-      transform: rotate(90deg);
       color: $google-blue;
     }
+  }
+
+  /* FAQ Answer */
+  &__answer {
+    font-size: 1rem;
+    color: $text-secondary;
+    padding: 0 0 1.2rem 2.9rem;
+
+    animation: slideDown 0.25s ease-out;
+  }
+}
+
+/* Smooth opening animation */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

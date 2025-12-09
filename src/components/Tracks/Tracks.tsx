@@ -37,7 +37,7 @@ export default function Tracks() {
   ]
 
   return (
-    <section className={`section ${styles['tracks']}`}>
+    <section id="tracks" className={`section ${styles['tracks']}`}>
       <div className="container">
 
         <div className="dual-heading">

@@ -8,11 +8,27 @@ import Header from '@/components/Header/Header';
 import Footer from '@/components/Footer/Footer';
 import { useState } from "react";
 import styles from './Register.module.scss';
+import { GoogleMaterialIcon, LoadingSpinner } from '@/components/ui/Icons';
 
 const seminars = [
-  { value: 'ai-future', label: 'AI & Future of Technology' },
-  { value: 'web3-blockchain', label: 'Web3 & Blockchain Revolution' },
-  { value: 'cloud-devops', label: 'Cloud Computing & DevOps' },
+  {
+    value: 'ai-future',
+    label: 'AI & Future of Technology',
+    icon: '',
+    description: 'Explore AI advancements and emerging tech trends'
+  },
+  {
+    value: 'web3-blockchain',
+    label: 'Web3 & Blockchain Revolution',
+    icon: '',
+    description: 'Dive into decentralized systems and blockchain applications'
+  },
+  {
+    value: 'cloud-devops',
+    label: 'Cloud Computing & DevOps',
+    icon: '',
+    description: 'Master modern infrastructure and cloud-native technologies'
+  },
 ];
 
 const formSchema = z.object({
@@ -25,10 +41,14 @@ const formSchema = z.object({
 });
 
 export default function RegisterPage() {
-    const [isSubmitting, setIsSubmitting] = useState(false);
-    const [showSuccessDialog, setShowSuccessDialog] = useState(false);
-    const [showToast, setShowToast] = useState(false);
-    const [toastMessage, setToastMessage] = useState({ title: '', description: '', type: 'error' as 'success' | 'error' | 'info' });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccessDialog, setShowSuccessDialog] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastMessage, setToastMessage] = useState({
+    title: '',
+    description: '',
+    type: 'error' as 'success' | 'error' | 'info'
+  });
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,297 +69,382 @@ export default function RegisterPage() {
   };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log('[RegisterPage] - Form submitted with values:', values);
-    
     setIsSubmitting(true);
     showToastMessage("Processing...", "Validating your information", "info");
-    
-    const formData = new FormData();
 
+    const formData = new FormData();
     formData.append('name', values.name);
     formData.append('email', values.email);
     formData.append('enrollment', values.enrollment);
     formData.append('branch', values.branch);
     formData.append('year', values.year);
     formData.append('seminars', JSON.stringify(values.seminars));
-    console.log('[RegisterPage] - FormData created, sending to API...');
 
     try {
       showToastMessage("Submitting...", "Sending your registration to the server", "info");
-      
+
       const response = await fetch('/api/register', {
         method: 'POST',
         body: formData,
       });
-      console.log('[RegisterPage] - API response received:', response);
 
       const result = await response.json();
-      console.log('[RegisterPage] - API response body parsed:', result);
 
       if (response.ok) {
-        showToastMessage("Success!", "You have been successfully registered for the selected seminars!", "success");
+        showToastMessage("Success!", "Registration completed successfully!", "success");
         setTimeout(() => {
           setShowSuccessDialog(true);
         }, 500);
-        console.log('[RegisterPage] - Registration successful.');
         form.reset();
       } else {
         showToastMessage("Registration Failed", result.error || "An unexpected error occurred.", "error");
-        console.error('[RegisterPage] - Registration failed:', result.error);
       }
     } catch (error) {
-        showToastMessage("Registration Failed", "An error occurred while submitting the form.", "error");
-        console.error('[RegisterPage] - An exception occurred during fetch:', error);
+      showToastMessage("Registration Failed", "An error occurred while submitting the form.", "error");
     } finally {
-        setIsSubmitting(false);
+      setIsSubmitting(false);
     }
   }
 
   return (
-    <>
-    <div className={styles['register']}>
+    <div className={styles.register}>
       <Header />
-      <main className={styles['register__main']}>
-          <div className={styles['register__container']}>
-            <div className={styles['register__heading-section']}>
-              <div className="dual-heading">
-                <div className="heading-back">REGISTER NOW</div>
-                <h2 className="heading-front">DevSprint Seminars 2024</h2>
+
+      <main className={styles.main}>
+
+        <div className={styles.container}>
+          <div className={styles.layout}>
+            {/* Left Column - Form */}
+            <div className={styles.formColumn}>
+              <div className={styles.formCard}>
+                <div className={styles.formHeader}>
+                  
+                  <div>
+                    <h2 className={styles.formTitle}>Registration Form</h2>
+                    <p className={styles.formSubtitle}>Fill in your details to secure your spot</p>
+                  </div>
+                </div>
+
+                <form onSubmit={form.handleSubmit(onSubmit)} className={styles.form}>
+                  {/* Personal Information Section */}
+                  <div className={styles.formSection}>
+                    <div className={styles.sectionHeader}>
+                      
+                      <h3 className={styles.sectionTitle}>Personal Information</h3>
+                    </div>
+
+                    <div className={styles.formGrid}>
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Full Name
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Enter your full name"
+                          className={`${styles.input} ${form.formState.errors.name ? styles.inputError : ''}`}
+                          {...form.register("name")}
+                        />
+                        {form.formState.errors.name && (
+                          <span className={styles.error}>
+                            <GoogleMaterialIcon name="error" size={14} />
+                            {form.formState.errors.name.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Email Address
+                        </label>
+                        <input
+                          type="email"
+                          placeholder="your.email@example.com"
+                          className={`${styles.input} ${form.formState.errors.email ? styles.inputError : ''}`}
+                          {...form.register("email")}
+                        />
+                        {form.formState.errors.email && (
+                          <span className={styles.error}>
+                           
+                            {form.formState.errors.email.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Enrollment Number
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="e.g., 0901CS211234"
+                          className={`${styles.input} ${form.formState.errors.enrollment ? styles.inputError : ''}`}
+                          {...form.register("enrollment")}
+                        />
+                        {form.formState.errors.enrollment && (
+                          <span className={styles.error}>
+                            
+                            {form.formState.errors.enrollment.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Branch
+                        </label>
+                        <select
+                          className={`${styles.select} ${form.formState.errors.branch ? styles.inputError : ''}`}
+                          {...form.register("branch")}
+                        >
+                          <option value="">Select your branch</option>
+                          <option value="CSE">Computer Science & Engineering</option>
+                          <option value="IT">Information Technology</option>
+                          <option value="AIR">AI & Robotics</option>
+                          <option value="AIDS">AI & Data Science</option>
+                          <option value="AIML">AI & Machine Learning</option>
+                          <option value="EC">Electronics Engineering</option>
+                          <option value="Other">Other</option>
+                        </select>
+                        {form.formState.errors.branch && (
+                          <span className={styles.error}>
+                            
+                            {form.formState.errors.branch.message}
+                          </span>
+                        )}
+                      </div>
+
+                      <div className={styles.formGroup}>
+                        <label className={styles.label}>
+                          
+                          Year of Study
+                        </label>
+                        <div className={styles.radioGroup}>
+                          {(['1st', '2nd', '3rd', '4th'] as const).map((year) => (
+                            <label key={year} className={styles.radioLabel}>
+                              <input
+                                type="radio"
+                                value={year}
+                                className={styles.radio}
+                                {...form.register("year")}
+                              />
+                              <span className={styles.radioCustom}></span>
+                              <span className={styles.radioText}>{year} Year</span>
+                            </label>
+                          ))}
+                        </div>
+                        {form.formState.errors.year && (
+                          <span className={styles.error}>
+                            <GoogleMaterialIcon name="error" size={14} />
+                            {form.formState.errors.year.message}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Seminars Section */}
+                  <div className={styles.formSection}>
+                    <div className={styles.sectionHeader}>
+
+                      <h3 className={styles.sectionTitle}>Select Seminars</h3>
+                    </div>
+                    <p className={styles.sectionDescription}>Choose one or more seminars you'd like to attend</p>
+
+                    <div className={styles.seminarsGrid}>
+                      {seminars.map((seminar) => {
+                        const isChecked = form.watch('seminars').includes(seminar.value);
+                        return (
+                          <label
+                            key={seminar.value}
+                            className={`${styles.seminarCard} ${isChecked ? styles.seminarCardChecked : ''}`}
+                          >
+                            <input
+                              type="checkbox"
+                              value={seminar.value}
+                              className={styles.checkbox}
+                              {...form.register("seminars")}
+                            />
+                            <div className={styles.seminarIcon}>{seminar.icon}</div>
+                            <div className={styles.seminarContent}>
+                              <h4 className={styles.seminarTitle}>{seminar.label}</h4>
+                              <p className={styles.seminarDescription}>{seminar.description}</p>
+                            </div>
+                            <div className={styles.checkmark}>
+                              <GoogleMaterialIcon name="check_circle" size={24} />
+                            </div>
+                          </label>
+                        );
+                      })}
+                    </div>
+                    {form.formState.errors.seminars && (
+                      <span className={styles.error}>
+                        <GoogleMaterialIcon name="error" size={14} />
+                        {form.formState.errors.seminars.message}
+                      </span>
+                    )}
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className={styles.submitButton}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <LoadingSpinner />
+                        Processing...
+                      </>
+                    ) : (
+                      <>
+                        <GoogleMaterialIcon name="how_to_reg" size={20} />
+                        Register for Seminars
+                      </>
+                    )}
+                  </button>
+                </form>
               </div>
             </div>
-            
-            <div className={styles['register__grid']}>
-              <div className={styles['register__left']}>
-                <div className={styles['register__about']}>
-                  <h2>About DevSprint Seminars</h2>
-                  <div className={styles['register__about-content']}>
+
+            {/* Right Column - Info */}
+            <div className={styles.infoColumn}>
+              <div className={styles.infoCard}>
+                <div className={styles.infoHeader}>
+                  <h3 className={styles.infoTitle}>Event Details</h3>
+                  <div className={styles.dateBadge}>
+                    <GoogleMaterialIcon name="calendar_today" size={16} />
+                    20-21 Jan 2024
+                  </div>
+                </div>
+
+                <div className={styles.details}>
+                  <div className={styles.detailItem}>
+                    
                     <div>
-                      <p className="font-bold">🎓 Join us for an enlightening series of technical seminars!</p>
-                      <p>DevSprint Seminars bring together industry experts and thought leaders to share their knowledge and insights on cutting-edge technologies.</p>
-                      
-                      <p className="font-bold">📚 Available Seminars:</p>
-                      <ul>
-                        <li><strong>AI & Future of Technology:</strong> Explore the latest advancements in artificial intelligence, machine learning, and emerging tech trends</li>
-                        <li><strong>Web3 & Blockchain Revolution:</strong> Dive deep into decentralized systems, blockchain applications, and the future of the internet</li>
-                        <li><strong>Cloud Computing & DevOps:</strong> Master modern infrastructure, deployment practices, and cloud-native technologies</li>
-                      </ul>
-                      
-                      <p className="font-bold">✨ What You&apos;ll Get:</p>
-                      <ul>
-                        <li>Certificates of participation</li>
-                        <li>Networking opportunities with industry experts</li>
-                        <li>Q&A sessions with speakers</li>
-                        <li>Learning materials and resources</li>
-                        <li>Refreshments during breaks</li>
-                      </ul>
-                      
-                      <p className="font-bold">📋 Registration Details:</p>
-                      <ul>
-                        <li>Open to all college students</li>
-                        <li>Select one or more seminars</li>
-                        <li>Limited seats available</li>
-                        <li>No registration fee</li>
-                      </ul>
-                      
-                      <p>📅 <strong>Event Date:</strong> 20th-21st January 2024</p>
-                      <p>📍 <strong>Venue:</strong> MITS Campus, Gwalior</p>
-                      
-                      <p>For queries, contact us at:</p>
-                      <p>📧 <a href="mailto:gdg@mits.ac.in">gdg@mits.ac.in</a></p>
-                      <p>📞 <a href="tel:+919876543210">+91 98765 43210</a></p>
+                      <span className={styles.detailLabel}>Venue</span>
+                      <span className={styles.detailValue}>MITS Campus, Gwalior</span>
+                    </div>
+                  </div>
+
+                  <div className={styles.detailItem}>
+                    
+                    <div>
+                      <span className={styles.detailLabel}>Time</span>
+                      <span className={styles.detailValue}>9:00 AM - 5:00 PM</span>
+                    </div>
+                  </div>
+
+                  <div className={styles.detailItem}>
+                    
+                    <div>
+                      <span className={styles.detailLabel}>Fee</span>
+                      <span className={styles.detailValue}>Free Registration</span>
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className={styles['register__card']}>
-                <div className={styles['register__card-header']}>
-                  <h1 className={styles['register__card-title']}>Seminar Registration</h1>
+                <div className={styles.benefits}>
+                  <h4 className={styles.benefitsTitle}>What You'll Get</h4>
+                  <ul className={styles.benefitsList}>
+                    <li>
+                      
+                      Certificate of Participation
+                    </li>
+                    <li>
+                      
+                      Networking with Experts
+                    </li>
+                    <li>
+                      
+                      Learning Materials
+                    </li>
+                    <li>
+                      
+                      Refreshments
+                    </li>
+                    <li>
+                      
+                      Q&A Sessions
+                    </li>
+                  </ul>
                 </div>
-                <div className={styles['register__card-content']}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className={styles['register__form']}>
-                        
-                        <h4 className={styles['register__section-title']}>Personal Information</h4>
-                        
-                        <div className={styles['register__form-field']}>
-                            <label className={styles['register__label']}>Full Name</label>
-                            <input
-                                type="text"
-                                placeholder="Enter your full name"
-                                className={styles['register__input']}
-                                {...form.register("name")}
-                            />
-                            {form.formState.errors.name && (
-                                <span className={styles['register__error']}>
-                                    {form.formState.errors.name.message}
-                                </span>
-                            )}
-                        </div>
 
-                        <div className={styles['register__form-field']}>
-                            <label className={styles['register__label']}>Email Address</label>
-                            <input
-                                type="email"
-                                placeholder="your.email@example.com"
-                                className={styles['register__input']}
-                                {...form.register("email")}
-                            />
-                            {form.formState.errors.email && (
-                                <span className={styles['register__error']}>
-                                    {form.formState.errors.email.message}
-                                </span>
-                            )}
-                        </div>
-
-                        <div className={styles['register__form-field']}>
-                            <label className={styles['register__label']}>Enrollment Number</label>
-                            <input
-                                type="text"
-                                placeholder="e.g., 0901CS211234"
-                                className={styles['register__input']}
-                                {...form.register("enrollment")}
-                            />
-                            {form.formState.errors.enrollment && (
-                                <span className={styles['register__error']}>
-                                    {form.formState.errors.enrollment.message}
-                                </span>
-                            )}
-                        </div>
-
-                        <div className={styles['register__form-field']}>
-                            <label className={styles['register__label']}>Branch</label>
-                            <select
-                                className={styles['register__select']}
-                                {...form.register("branch")}
-                            >
-                                <option value="">Select branch</option>
-                                <option value="Civil">Civil Engineering</option>
-                                <option value="Mech">Mechanical Engineering</option>
-                                <option value="Elec">Electrical Engineering</option>
-                                <option value="EC">Electronics Engineering</option>
-                                <option value="Arch">Architecture</option>
-                                <option value="CSE">Computer Science & Engineering</option>
-                                <option value="Chem">Chemical Engineering</option>
-                                <option value="IT">Information Technology</option>
-                                <option value="ET">Electronics & Telecommunication Engineering</option>
-                                <option value="AIR">Information Technology (Artificial Intelligence and Robotics)</option>
-                                <option value="IOT-1">Internet of Things (IoT)</option>
-                                <option value="MAC">Mathematics and Computing</option>
-                                <option value="IOT-2">Internet of Things</option>
-                                <option value="AIDS">Artificial Intelligence (AI) and Data Science</option>
-                                <option value="AIML">Artificial Intelligence and Machine Learning</option>
-                                <option value="CSD">Computer Science and Design</option>
-                                <option value="CSBS">Computer Science & Business Systems</option>
-                                <option value="AI">Artificial Intelligence (AI)</option>
-                                <option value="Other">Other</option>
-                            </select>
-                            {form.formState.errors.branch && (
-                                <span className={styles['register__error']}>
-                                    {form.formState.errors.branch.message}
-                                </span>
-                            )}
-                        </div>
-
-                        <div className={styles['register__form-field']}>
-                            <label className={styles['register__label']}>Year of Study</label>
-                            <select
-                                className={styles['register__select']}
-                                {...form.register("year")}
-                            >
-                                <option value="1st">1st Year</option>
-                                <option value="2nd">2nd Year</option>
-                                <option value="3rd">3rd Year</option>
-                                <option value="4th">4th Year</option>
-                            </select>
-                            {form.formState.errors.year && (
-                                <span className={styles['register__error']}>
-                                    {form.formState.errors.year.message}
-                                </span>
-                            )}
-                        </div>
-        
-                        <h4 className={styles['register__section-title']}>Select Seminars</h4>
-                        <p className={styles['register__help-text']}>Choose one or more seminars you&apos;d like to attend</p>
-                        
-                        <div className={styles['register__checkbox-group']}>
-                            {seminars.map((seminar) => (
-                                <label key={seminar.value} className={styles['register__checkbox-label']}>
-                                    <input
-                                        type="checkbox"
-                                        value={seminar.value}
-                                        className={styles['register__checkbox']}
-                                        {...form.register("seminars")}
-                                    />
-                                    <span className={styles['register__checkbox-text']}>{seminar.label}</span>
-                                </label>
-                            ))}
-                        </div>
-                        {form.formState.errors.seminars && (
-                            <span className={styles['register__error']}>
-                                {form.formState.errors.seminars.message}
-                            </span>
-                        )}
-
-                    <button 
-                      type="submit" 
-                      disabled={isSubmitting} 
-                      className={styles['register__button']}
-                    >
-                      {isSubmitting ? "Submitting..." : "Register for Seminars"}
-                    </button>
-                  </form>
+                <div className={styles.contact}>
+                  <h4 className={styles.contactTitle}>Contact Information</h4>
+                  <div className={styles.contactLinks}>
+                    <a href="mailto:gdg@mits.ac.in" className={styles.contactLink}>
+                      <GoogleMaterialIcon name="mail" size={18} />
+                      gdg@mits.ac.in
+                    </a>
+                    <a href="tel:+919876543210" className={styles.contactLink}>
+                      <GoogleMaterialIcon name="call" size={18} />
+                      +91 98765 43210
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
       </main>
+
       <Footer />
+
+      {/* Success Dialog */}
+      {showSuccessDialog && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modal}>
+            <div className={styles.modalHeader}>
+              <div className={styles.successIcon}>
+                <GoogleMaterialIcon name="check_circle" size={48} />
+              </div>
+              <h2 className={styles.modalTitle}>Registration Successful!</h2>
+              <button
+                onClick={() => setShowSuccessDialog(false)}
+                className={styles.modalClose}
+              >
+                <GoogleMaterialIcon name="close" size={24} />
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              <p>You have been successfully registered for the selected seminars!</p>
+              <p>Check your email for confirmation and seminar details including venue and timings.</p>
+              <div className={styles.modalActions}>
+                <button
+                  onClick={() => setShowSuccessDialog(false)}
+                  className={styles.modalButton}
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className={`${styles.toast} ${styles[`toast--${toastMessage.type}`]}`}>
+          <div className={styles.toastIcon}>
+            {toastMessage.type === 'info' && <LoadingSpinner />}
+            {toastMessage.type === 'success' && <GoogleMaterialIcon name="check_circle" size={24} />}
+            {toastMessage.type === 'error' && <GoogleMaterialIcon name="error" size={24} />}
+          </div>
+          <div className={styles.toastContent}>
+            <strong className={styles.toastTitle}>{toastMessage.title}</strong>
+            <p className={styles.toastDescription}>{toastMessage.description}</p>
+          </div>
+          <button
+            onClick={() => setShowToast(false)}
+            className={styles.toastClose}
+          >
+            <GoogleMaterialIcon name="close" size={18} />
+          </button>
+        </div>
+      )}
     </div>
-
-    {/* Success Modal */}
-    {showSuccessDialog && (
-      <div className={styles['register__modal-overlay']} onClick={() => setShowSuccessDialog(false)}>
-        <div className={styles['register__modal']} onClick={(e) => e.stopPropagation()}>
-          <div className={styles['register__modal-header']}>
-            <h2>Registration Successful!</h2>
-            <button 
-              onClick={() => setShowSuccessDialog(false)}
-              className={styles['register__modal-close']}
-            >
-              ×
-            </button>
-          </div>
-          <div className={styles['register__modal-body']}>
-            <p>You have been successfully registered for the selected seminars!</p>
-            <p>Check your email for confirmation and seminar details including venue and timings.</p>
-            <p>See you at the event!</p>
-          </div>
-          <div className={styles['register__modal-footer']}>
-            <button 
-              onClick={() => setShowSuccessDialog(false)}
-              className={styles['register__button']}
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      </div>
-    )}
-
-    {/* Toast Notification */}
-    {showToast && (
-      <div className={`${styles['register__toast']} ${styles[`register__toast--${toastMessage.type}`]}`}>
-        <div className={styles['register__toast-icon']}>
-          {toastMessage.type === 'info' && <div className={styles['register__toast-spinner']}></div>}
-          {toastMessage.type === 'success' && <span>✓</span>}
-          {toastMessage.type === 'error' && <span>✕</span>}
-        </div>
-        <div className={styles['register__toast-content']}>
-          <strong>{toastMessage.title}</strong>
-          <p>{toastMessage.description}</p>
-        </div>
-      </div>
-    )}
-    </>
   );
 }
