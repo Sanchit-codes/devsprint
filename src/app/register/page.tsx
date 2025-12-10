@@ -252,12 +252,24 @@ export default function RegisterPage() {
                           {...form.register("branch")}
                         >
                           <option value="">Select your branch</option>
-                          <option value="CSE">Computer Science & Engineering</option>
-                          <option value="IT">Information Technology</option>
-                          <option value="AIR">AI & Robotics</option>
-                          <option value="AIDS">AI & Data Science</option>
-                          <option value="AIML">AI & Machine Learning</option>
+                          <option value="Civil">Civil Engineering</option>
+                          <option value="Mech">Mechanical Engineering</option>
+                          <option value="Elec">Electrical Engineering</option>
                           <option value="EC">Electronics Engineering</option>
+                          <option value="Arch">Architecture</option>
+                          <option value="CSE">Computer Science & Engineering</option>
+                          <option value="Chem">Chemical Engineering</option>
+                          <option value="IT">Information Technology</option>
+                          <option value="ET">Electronics & Telecommunication Engineering</option>
+                          <option value="AIR">Information Technology (Artificial Intelligence and Robotics)</option>
+                          <option value="IOT-1">Internet of Things (IoT)</option>
+                          <option value="MAC">Mathematics and Computing</option>
+                          <option value="IOT-2">Internet of Things</option>
+                          <option value="AIDS">Artificial Intelligence (AI) and Data Science</option>
+                          <option value="AIML">Artificial Intelligence and Machine Learning</option>
+                          <option value="CSD">Computer Science and Design</option>
+                          <option value="CSBS">Computer Science & Business Systems</option>
+                          <option value="AI">Artificial Intelligence (AI)</option>
                           <option value="Other">Other</option>
                         </select>
                         {form.formState.errors.branch && (

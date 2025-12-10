@@ -11,9 +11,9 @@ export default function TeamMembers() {
     name: 'Sanchit Jain',
     role: 'FullStack Developer',
     description: 'Develops complete web solutions with smooth frontend and powerful backend integration.',
-    image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&q=80',
+    image: '/assets/developers/sanchit.avif',
     social: {
-      linkedin: 'https://www.linkedin.com/in/lnsanchit/',
+      linkedin: 'https://www.linkedin.com/in/lnSanchit',
       github: 'https://github.com/Sanchit-codes',
       email: 'sanchit.workspace@outlook.com'
     }

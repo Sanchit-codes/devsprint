@@ -172,212 +172,94 @@ export async function POST(req: NextRequest) {
         </div>
       `).join('');
 
-      const emailContent = `
-<!DOCTYPE html>
+      const emailContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Registration Confirmed - DevSprint Seminars 2024</title>
+  <title>DevSprint 2025 Registration Confirmed</title>
 </head>
-<body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f8f9fa;">
-  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f8f9fa; padding: 40px 20px;">
+<body style="font-family: Arial, sans-serif; background-color: #f4f4f4; margin: 0; padding: 20px 0; text-align: center;">
+  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
     <tr>
       <td align="center">
         <!-- Main Container -->
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; background-color: #ffffff; border-radius: 16px; overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.08);">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; background-color: #ffffff; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); overflow: hidden;">
           
-          <!-- Header with Google Colors -->
+          <!-- Header Image -->
           <tr>
-            <td style="background: linear-gradient(135deg, #4285F4 0%, #EA4335 50%, #FBBC04 75%, #34A853 100%); padding: 4px 0;">
+            <td style="background-color: #f7f7f7; padding: 20px 0;">
+              <img src="https://i.kwin.in/r/mizppfnxt51.png" alt="DevSprint 2025 Header Graphic" style="width: 100%; max-width: 600px; height: auto; display: block;">
             </td>
           </tr>
           
-          <!-- Logo/Brand Section -->
+          <!-- Content Area -->
           <tr>
-            <td style="padding: 40px 40px 24px; text-align: center; background-color: #ffffff;">
-              <h1 style="margin: 0; color: #1a1a1a; font-size: 32px; font-weight: 700; letter-spacing: -0.5px;">
-                DevSprint Seminars
-              </h1>
-              <div style="margin-top: 8px; color: #666666; font-size: 14px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase;">
-                2024
-              </div>
-            </td>
-          </tr>
+            <td style="padding: 20px; text-align: center;">
+              
+              <!-- Title -->
+              <h1 style="color: #333333; font-size: 24px; margin-top: 0; margin-bottom: 5px;">DevSprint</h1>
+              <p style="color: #555555; font-size: 16px; margin-top: 0; margin-bottom: 20px;">2025</p>
 
-          <!-- Success Badge -->
-          <tr>
-            <td style="padding: 0 40px 32px; text-align: center;">
-              <div style="display: inline-block; background-color: #34A85315; border: 2px solid #34A853; border-radius: 50px; padding: 12px 24px;">
-                <span style="color: #34A853; font-size: 20px; margin-right: 8px;">✓</span>
-                <span style="color: #34A853; font-weight: 600; font-size: 16px;">Registration Confirmed</span>
+              <!-- Confirmation Badge -->
+              <div style="margin-bottom: 30px;">
+                <span style="display: inline-block; padding: 8px 15px; border: 2px solid #5cb85c; color: #5cb85c; font-weight: bold; border-radius: 5px; background-color: #eaf6eaf0;">
+                  Registration Confirmed
+                </span>
               </div>
-            </td>
-          </tr>
 
-          <!-- Main Content -->
-          <tr>
-            <td style="padding: 0 40px;">
-              <p style="color: #1a1a1a; font-size: 18px; line-height: 1.6; margin: 0 0 16px;">
-                Dear <strong>${name}</strong>,
-              </p>
-              <p style="color: #666666; font-size: 16px; line-height: 1.6; margin: 0 0 24px;">
-                Thank you for registering for DevSprint Seminars 2024! We're excited to confirm your participation in the following seminar(s):
+              <!-- Message -->
+              <p style="color: #333333; font-size: 16px; line-height: 1.5; text-align: left; margin-bottom: 20px;">
+                Hi <strong>${name}</strong>,
+                <br><br>
+                You have successfully registered for <strong>GDG DevSprint 2025</strong>! We're excited to have you join us for this amazing event.
               </p>
 
-              <!-- Seminars List -->
-              ${seminarItemsHtml}
-
-              <!-- Event Details Card -->
-              <div style="background-color: #f8f9fa; border-radius: 12px; padding: 24px; margin: 32px 0;">
-                <h2 style="color: #1a1a1a; font-size: 20px; margin: 0 0 20px; font-weight: 700;">Event Details</h2>
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="font-size: 20px; margin-right: 12px;">📅</span>
-                      <span style="color: #666666; font-size: 15px;">Date:</span>
-                      <strong style="color: #1a1a1a; font-size: 15px; margin-left: 8px;">20th-21st January 2024</strong>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="font-size: 20px; margin-right: 12px;">📍</span>
-                      <span style="color: #666666; font-size: 15px;">Venue:</span>
-                      <strong style="color: #1a1a1a; font-size: 15px; margin-left: 8px;">MITS Campus, Gwalior</strong>
-                    </td>
-                  </tr>
-                </table>
+              <!-- Details Box -->
+              <div style="border: 1px solid #dddddd; padding: 15px; border-radius: 5px; text-align: left; margin-bottom: 30px;">
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Name:</span> ${name}</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Enrollment No:</span> ${enrollment}</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Email:</span> ${email}</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Branch:</span> ${branch}</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Year:</span> ${year}</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Date:</span> Jan 5-6, 2026</p>
+                <p style="margin: 5px 0; color: #333333;"><span style="font-weight: bold;">Venue:</span> MITS Campus, Gwalior</p>
               </div>
 
-              <!-- Registration Details -->
-              <div style="background-color: #ffffff; border: 1px solid #e0e0e0; border-radius: 12px; padding: 24px; margin: 24px 0;">
-                <h3 style="color: #1a1a1a; font-size: 18px; margin: 0 0 16px; font-weight: 700;">Your Registration Details</h3>
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px; width: 40%;">Name:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${name}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Email:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${email}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Mobile:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${mobile}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Enrollment:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${enrollment}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Branch:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${branch}</td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 6px 0; color: #666666; font-size: 14px;">Year:</td>
-                    <td style="padding: 6px 0; color: #1a1a1a; font-size: 14px; font-weight: 600;">${year}</td>
-                  </tr>
-                </table>
+              <!-- Registered Events -->
+              <div style="margin-bottom: 30px;">
+                <h2 style="color: #333333; font-size: 18px; font-weight: bold; margin-top: 0; margin-bottom: 15px; text-align: left;">Your Registered Events:</h2>
+                ${seminarItemsHtml}
               </div>
 
-              <!-- What to Expect -->
-              <div style="margin: 32px 0;">
-                <h3 style="color: #1a1a1a; font-size: 18px; margin: 0 0 16px; font-weight: 700;">What to Expect</h3>
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="color: #34A853; font-size: 18px; margin-right: 12px;">✓</span>
-                      <span style="color: #666666; font-size: 15px;">Certificates of participation</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="color: #34A853; font-size: 18px; margin-right: 12px;">✓</span>
-                      <span style="color: #666666; font-size: 15px;">Networking opportunities with industry experts</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="color: #34A853; font-size: 18px; margin-right: 12px;">✓</span>
-                      <span style="color: #666666; font-size: 15px;">Interactive Q&A sessions with speakers</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="color: #34A853; font-size: 18px; margin-right: 12px;">✓</span>
-                      <span style="color: #666666; font-size: 15px;">Learning materials and resources</span>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="padding: 8px 0;">
-                      <span style="color: #34A853; font-size: 18px; margin-right: 12px;">✓</span>
-                      <span style="color: #666666; font-size: 15px;">Refreshments during breaks</span>
-                    </td>
-                  </tr>
-                </table>
+              <!-- Action Button -->
+              <a href="${process.env.NEXT_PUBLIC_BASE_URL}" style="display: inline-block; background-color: #4285f4; color: #ffffff; padding: 12px 25px; border-radius: 5px; text-decoration: none; font-weight: bold; font-size: 16px; margin-bottom: 30px;">
+                View Next Steps & Schedule
+              </a>
+
+              <!-- Need Help Section -->
+              <div style="background-color: #f7f7f7; border: 1px solid #eeeeee; padding: 20px; border-radius: 5px; margin-bottom: 30px;">
+                <p style="font-weight: bold; color: #333333; font-size: 18px; margin-top: 0; margin-bottom: 10px;">Need Help?</p>
+                <p style="color: #555555; font-size: 14px; margin-bottom: 15px;">
+                  If you have any questions or need to make changes to your registration, please contact us:
+                </p>
+                <p style="margin: 5px 0;">
+                  <a href="mailto:gdgoncampusmits@gmail.com" style="color: #4285f4; text-decoration: none;">&#9993; gdgoncampusmits@gmail.com</a>
+                </p>
+                <p style="margin: 5px 0;">
+                  <a href="tel:+91 90391 41772" style="color: #4285f4; text-decoration: none;">&#9742; +91 90391 41772</a>
+                </p>
               </div>
 
-              <!-- Important Reminders -->
-              <div style="background-color: #FBBC0415; border-left: 4px solid #FBBC04; border-radius: 8px; padding: 20px; margin: 24px 0;">
-                <h3 style="color: #1a1a1a; font-size: 16px; margin: 0 0 12px; font-weight: 700;">⚠️ Important Reminders</h3>
-                <ul style="margin: 0; padding-left: 20px; color: #666666; font-size: 14px; line-height: 1.8;">
-                  <li>Please arrive 15 minutes before the seminar start time</li>
-                  <li>Carry a valid college ID card</li>
-                  <li>Bring a notebook for taking notes</li>
-                  <li>Follow the event code of conduct</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-
-          <!-- Contact Section -->
-          <tr>
-            <td style="padding: 32px 40px;">
-              <div style="background-color: #f8f9fa; border-radius: 12px; padding: 24px; text-align: center;">
-                <p style="color: #1a1a1a; font-size: 15px; margin: 0 0 12px; font-weight: 600;">Need Help?</p>
-                <p style="color: #666666; font-size: 14px; margin: 0 0 16px;">If you have any questions or need to make changes to your registration, please contact us:</p>
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                  <tr>
-                    <td style="text-align: center; padding: 6px 0;">
-                      <a href="mailto:gdg@mits.ac.in" style="color: #4285F4; text-decoration: none; font-size: 14px; font-weight: 600;">
-                        📧 gdg@mits.ac.in
-                      </a>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td style="text-align: center; padding: 6px 0;">
-                      <a href="tel:+919876543210" style="color: #4285F4; text-decoration: none; font-size: 14px; font-weight: 600;">
-                        📞 +91 98765 43210
-                      </a>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </td>
-          </tr>
-
-          <!-- Closing -->
-          <tr>
-            <td style="padding: 0 40px 40px; text-align: center;">
-              <p style="color: #666666; font-size: 15px; line-height: 1.6; margin: 0 0 8px;">
-                We look forward to seeing you at the event! 🎉
+              <!-- Footer -->
+              <p style="color: #555555; font-size: 14px; margin-bottom: 5px;">
+                We look forward to seeing you at the event! &#127881;
               </p>
-              <p style="color: #1a1a1a; font-size: 15px; font-weight: 600; margin: 0;">
+              <p style="font-weight: bold; color: #333333; font-size: 16px; margin-top: 5px;">
                 Best regards,<br>
-                <span style="color: #4285F4;">GDG MITS Team</span>
+                <span style="color: #4285f4;">GDG MITS Team</span>
               </p>
-            </td>
-          </tr>
-
-          <!-- Footer -->
-          <tr>
-            <td style="background-color: #f8f9fa; padding: 24px 40px; text-align: center; border-top: 1px solid #e0e0e0;">
-              <p style="color: #999999; font-size: 12px; margin: 0 0 8px;">
-                © 2024 DevSprint Seminars. All rights reserved.
-              </p>
-              <p style="color: #999999; font-size: 12px; margin: 0;">
-                GDG MITS | Madhav Institute of Technology & Science, Gwalior
-              </p>
+              
             </td>
           </tr>
 
@@ -389,7 +271,7 @@ export async function POST(req: NextRequest) {
 </html>
 `;
 
-      const subject = '✓ Registration Confirmed - DevSprint Seminars 2024';
+      const subject = 'Registration Confirmed - DevSprint 2025';
       const raw = [
         'Content-Type: text/html; charset="UTF-8"\n',
         'MIME-Version: 1.0\n',
@@ -429,4 +311,4 @@ export async function POST(req: NextRequest) {
     const errorMessage = error instanceof Error ? error.message : 'Internal Server Error';
     return NextResponse.json({ error: errorMessage }, { status: 500 });
   }
-}``
+}

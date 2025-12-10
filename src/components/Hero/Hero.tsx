@@ -130,7 +130,7 @@ export default function Hero() {
             </a>
 
             <a 
-              href="#brochure" 
+              href="/assets/brochure.pdf" 
               className={`${styles.btn} ${styles.btnTertiary}`}
             >
               <span className={`${styles.btnIcon} material-symbols-outlined`}>download</span>

@@ -76,7 +76,7 @@ export default function TeamMembers() {
       name: 'Rishita Mukherjee',
       role: 'Social Media Lead',
       description: 'Amplifies our voice across digital platforms with strategic social media campaigns.',
-      image: '/assets/team/rishita.png',
+      image: '/assets/team/rishita.avif',
       social: {
         linkedin: "http://www.linkedin.com/in/rishita-mukherjee-293045325",
         github: "https://github.com/rishita-73",
@@ -100,7 +100,7 @@ export default function TeamMembers() {
       name: 'Utsav Kumawat',
       role: 'Videography Lead',
       description: 'Captures unforgettable moments and tells our story through compelling visual narratives.',
-      image: '/assets/team/utsav.png',
+      image: '/assets/team/utsav.avif',
       social: {
         linkedin: 'https://www.linkedin.com/in/alwaysutsav',
         github: 'https://github.com/always-utsav',
